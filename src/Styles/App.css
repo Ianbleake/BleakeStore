@@ -9,6 +9,10 @@ html{
   width: 100%;
 }
 
+.AppBody{
+  overflow: hidden;
+}
+
 .Listing {
   height: 100%;
   width: 100%;

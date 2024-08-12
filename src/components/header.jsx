@@ -8,7 +8,6 @@ const Header = ({loginHandler, menuHandler, cartHandler}) => {
 
   return (
     <header>
-      <TopBanner text={'Welcome Friends'}/>
       <div className='header' >
         <button className='menubtn' onClick={menuHandler} ><CiMenuBurger /></button>
         <h1>BleakeStore</h1>

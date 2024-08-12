@@ -6,7 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import Header from '../components/Header'
 import Home from '../views/Home';
 import Cart from '../views/Cart'
-import Menu from '../views/Menu.jsx';
+import PopMenu from '../views/PopMenu'
 import LoginPopUp from '../views/LoginPopUp';
 
 
@@ -31,10 +31,10 @@ const App = () => {
   return (
     <div className="App">
       <Header loginHandler={loginHandler} menuHandler={menuHandler} cartHandler={cartHandler} />
-      { login ? <LoginPopUp/> : ''}
-      { menu ? <Menu/> : '' }
-      { cart ? <Cart/> : '' }
       <div className='AppBody' >
+      { login ? <LoginPopUp/> : ''}
+      { cart ? <Cart/> : '' }
+      { menu ? <PopMenu /> : '' }
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/Listing' element={<ListingProducts/>} />
