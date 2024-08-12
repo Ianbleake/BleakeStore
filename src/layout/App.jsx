@@ -33,7 +33,7 @@ const App = () => {
       <Header loginHandler={loginHandler} menuHandler={menuHandler} cartHandler={cartHandler} />
       <div className='AppBody' >
       { login ? <LoginPopUp/> : ''}
-      { cart ? <Cart/> : '' }
+      { cart ? <Cart handler={cartHandler}/> : '' }
       { menu ? <PopMenu /> : '' }
         <Routes>
           <Route path='/' element={<Home/>} />

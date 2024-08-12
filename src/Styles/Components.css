@@ -191,6 +191,15 @@
 /**Header*/
 
 /**Login*/
+
+@keyframes show {
+  0%{
+    transform: scale(0);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
 .wrapper {
   --input-focus: #2d8cf0;
   --font-color: #323232;
@@ -204,6 +213,7 @@
      position: absolute;
      top: 50vh;
      left: 55vh; 
+  animation: show 500ms ease;
 }
 /* switch card */
 .switch {
@@ -416,3 +426,32 @@
   background-color: #2d8cf0;
 }
 /**Menu*/
+
+/**Cart*/
+
+.close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  
+}
+
+.sidecart {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  z-index: 3;
+  height: 99%;
+  width: 45%;
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: 4px 4px black;
+  background-color: #2d8cf0;
+}
+
+/**Cart*/
