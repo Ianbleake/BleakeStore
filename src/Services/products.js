@@ -22,7 +22,6 @@ const create = () => {
     )
   })
       .then(res=>res.json())
-      .then(json=>console.log(json))
 }
 
 const updateProduct = () => {
@@ -39,7 +38,6 @@ const updateProduct = () => {
     )
   })
       .then(res=>res.json())
-      .then(json=>console.log(json))
 }
 
 const deleteProduct = ()=>{
@@ -47,7 +45,6 @@ const deleteProduct = ()=>{
     method:"DELETE"
   })
       .then(res=>res.json())
-      .then(json=>console.log(json))
 }
 
 
