@@ -429,6 +429,18 @@
 
 /**Cart*/
 
+@keyframes showcart {
+
+  0%{
+    transform: translate(100%);
+  }
+
+  100%{
+    transform: translateX(0%);
+  }
+  
+}
+
 .close{
   position: absolute;
   top: 10px;
@@ -438,7 +450,7 @@
   font-size: 30px;
   background-color: transparent;
   border: none;
-  
+  cursor: pointer;
 }
 
 .sidecart {
@@ -452,6 +464,7 @@
   border-radius: 5px;
   box-shadow: 4px 4px black;
   background-color: #2d8cf0;
+  animation: showcart 300ms ease;
 }
 
 /**Cart*/
