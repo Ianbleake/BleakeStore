@@ -32,9 +32,9 @@ const App = () => {
     <div className="App">
       <Header loginHandler={loginHandler} menuHandler={menuHandler} cartHandler={cartHandler} />
       <div className='AppBody' >
-      { login ? <LoginPopUp/> : ''}
-      { cart ? <Cart handler={cartHandler}/> : '' }
-      { menu ? <PopMenu /> : '' }
+        { login ? <LoginPopUp/> : ''}
+        { cart ? <Cart handler={cartHandler}/> : '' }
+        { menu ? <PopMenu /> : '' }
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/Listing' element={<ListingProducts/>} />

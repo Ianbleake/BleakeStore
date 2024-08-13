@@ -3,6 +3,7 @@ import TopBanner from './TopBanner'
 import { CiMenuBurger } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
+import { Link } from 'react-router-dom';
 
 const Header = ({loginHandler, menuHandler, cartHandler}) => {
 
@@ -10,7 +11,7 @@ const Header = ({loginHandler, menuHandler, cartHandler}) => {
     <header>
       <div className='header' >
         <button className='menubtn' onClick={menuHandler} ><CiMenuBurger /></button>
-        <h1>BleakeStore</h1>
+        <Link to={"/"} ><h1>BleakeStore</h1></Link>
         <div className='icons'>
           <button className='iconbutton' onClick={loginHandler} ><CiUser /></button>
           <button className='iconbutton' onClick={cartHandler} ><CiShoppingCart /></button>

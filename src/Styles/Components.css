@@ -425,6 +425,39 @@
   animation: showmenu 500ms ease;
   background-color: #2d8cf0;
 }
+
+.menurow{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  height: 10vh;
+  width: 100%;
+}
+
+.searchcont {
+  height: 45px;
+  width: 250px;
+}
+
+.search {
+  height: 100%;
+  width: 100%;
+  border: 2px solid black;
+  box-shadow: 8px 8px 0 black;
+  padding: 12px;
+  transition: all 300ms ease;
+}
+
+.search:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 #000;
+}
+
+.search:focus{
+  outline: none;
+}
+
 /**Menu*/
 
 /**Cart*/

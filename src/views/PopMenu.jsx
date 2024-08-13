@@ -1,8 +1,13 @@
 import React from 'react'
 
-const Menu = ({menuHandler}) => {
+const Menu = () => {
   return (
     <div className='menu'>
+      <div className='menurow'>
+        <div className='searchcont'>
+          <input type="text" className='search' placeholder='Search...' />
+        </div>  
+      </div>
       <div className='menucol'>
 
       </div>
