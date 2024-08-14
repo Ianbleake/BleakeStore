@@ -23,6 +23,7 @@ a {
   color: currentColor;
 }
 
+
 .AppBody{
   overflow: hidden;
   padding-top: 65px;
@@ -84,4 +85,13 @@ a {
   top: 70%;
   left: 20px;
   z-index: 2;
+}
+
+.btn.control{
+  position: fixed;
+  height: 50px;
+  width: 100px;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
 }
