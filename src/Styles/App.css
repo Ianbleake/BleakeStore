@@ -42,6 +42,8 @@ a {
   gap: 5vh;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  padding-top: 20px;
+  transition: 500ms;
 }
 
 .btn{
@@ -51,6 +53,8 @@ a {
   border: 2px solid black;
   box-shadow: 1px 4px 0 #494a4b;
   transform: translateY(-5px);
+  font-size: 25px;
+  font-weight: 600;
 }
 
 .btn:active{
