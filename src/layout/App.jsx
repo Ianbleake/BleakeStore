@@ -1,13 +1,13 @@
 import '../Styles/App.css';
 import '../Styles/Components.css'
 import React, { useState} from 'react';
-import ListingProducts from '../views/ListingProducts';
+import ListingProducts from '../modules/store/views/ListingProducts';
 import { Route, Routes } from 'react-router-dom';
-import Header from '../components/Header'
-import Home from '../views/Home';
-import Cart from '../views/Cart'
-import PopMenu from '../views/PopMenu'
-import LoginPopUp from '../views/LoginPopUp';
+import Header from '../modules/store/components/Header'
+import Home from '../modules/store/views/Home';
+import Cart from '../modules/store/views/Cart'
+import PopMenu from '../modules/store/views/PopMenu'
+import LoginPopUp from '../modules/store/views/LoginPopUp';
 
 
 const App = () => {

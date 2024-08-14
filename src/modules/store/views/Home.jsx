@@ -1,6 +1,6 @@
 import React from 'react'
 import BannerSlide from '../components/BannerSlide'
-import Banner1 from '../assets/banner.png'
+import Banner1 from '../../../assets/banner.png'
 
 const Home = () => {
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductCard from '../components/ProductCard'
-import productsServices from '../Services/products';
+import productsServices from '../../../Services/products';
 import { useState, useEffect } from 'react';
 
 const ListingProducts = () => {
