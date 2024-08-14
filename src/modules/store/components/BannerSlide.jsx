@@ -28,7 +28,6 @@ const BannerSlide = ({data}) => {
     }
   }
 
-  console.log('Animation: ', animation)
 
   return (
     <div className='BannerSection'>

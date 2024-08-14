@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import usersService from '../../../Services/Firebase/Users'
 
 const LoginPopUp = () => {
-  return (
 
+  useEffect(() => {
+    usersService
+      .getAll()
+      .then( users => {
+        console.log(users)
+      })
+  }, [])
+
+  return (
   <div className="wrapper">
     <div className="card-switch">
         <label className="switch">
@@ -31,7 +40,6 @@ const LoginPopUp = () => {
         </label>
     </div>   
   </div>
- 
   )
 }
 
