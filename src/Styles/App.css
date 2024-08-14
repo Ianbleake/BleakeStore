@@ -15,6 +15,7 @@ header {
   position: fixed;
   z-index: 2;
   width: 100%;
+  margin-top: 10px;
 }
 
 a {
@@ -37,3 +38,39 @@ a {
   flex-wrap: wrap;
 }
 
+.btn{
+  height: 60px;
+  width: 200px;
+  border-radius: 5px;
+  border: 2px solid black;
+  box-shadow: 1px 4px 0 #494a4b;
+  transform: translateY(-5px);
+}
+
+.btn:active{
+  transform: translateY(0px);
+}
+
+.arrow{
+  height: 30px;
+  width: 30px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 33px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.arrow.right{
+  position: absolute;
+  top: 50%;
+  right: 10px;
+
+}
+
+.arrow.left{
+  position: absolute;
+  top: 50%;
+  left: 10px;
+}

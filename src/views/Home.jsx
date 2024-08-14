@@ -7,21 +7,33 @@ const Home = () => {
   const Banners = [
     {
       id: 1,
-      source: '/',
-      image: Banner1
-
+      source: '/Listing',
+      image: Banner1,
+      title: 'Lorem Ipsum 1',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a felis ultrices, fermentum sem sit amet, rhoncus ante. Pellentesque hendrerit orci at odio varius, id.',
+      button: 'Buy now'
     },
     {
-      id: 1,
-      source: '/',
-      image:'/'
-
+      id: 2,
+      source: '/Listing',
+      image: Banner1,
+      title: 'Lorem Ipsum 2',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a felis ultrices, fermentum sem sit amet, rhoncus ante. Pellentesque hendrerit orci at odio varius, id.',
+      button: 'Buy now'
+    },
+    {
+      id: 3,
+      source: '/Listing',
+      image: Banner1,
+      title: 'Lorem Ipsum 3',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a felis ultrices, fermentum sem sit amet, rhoncus ante. Pellentesque hendrerit orci at odio varius, id.',
+      button: 'Buy now'
     }
   ]
 
   return (
     <section className=''>
-      <BannerSlide images={Banners} title={'Lorem ipsum' } description={'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'} />
+      <BannerSlide data={Banners} />
     </section>
   )
 }
