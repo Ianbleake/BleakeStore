@@ -25,7 +25,13 @@ a {
 
 .AppBody{
   overflow: hidden;
-  padding-top: 80px;
+  padding-top: 65px;
+}
+
+.BannerSection{
+  height: 570px;
+  width: 100%;
+  padding-top: 20px;
 }
 
 .Listing {
@@ -64,13 +70,14 @@ a {
 
 .arrow.right{
   position: absolute;
-  top: 50%;
-  right: 10px;
+  top: 70%;
+  right: 20px;
 
 }
 
-.arrow.left{
+.arrow.left {
   position: absolute;
-  top: 50%;
-  left: 10px;
+  top: 70%;
+  left: 20px;
+  z-index: 2;
 }

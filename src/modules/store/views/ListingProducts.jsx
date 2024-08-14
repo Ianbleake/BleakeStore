@@ -18,7 +18,7 @@ const ListingProducts = () => {
   return (
     <section className='Listing'>
       {products.map(product => (
-        <ProductCard key={product.id} name={product.title} description={product.description} srcimg={product.image} price={product.price} />
+        <ProductCard id={product.id} name={product.title} description={product.description} srcimg={product.image} price={product.price} key={product.id} />
       ))}
     </section>
   )
