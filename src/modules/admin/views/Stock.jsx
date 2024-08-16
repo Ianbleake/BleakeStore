@@ -54,9 +54,9 @@ const Stock = () => {
         </div>
 
         {
-          products.map((product)=> {
+          products.map((product,index)=> {
             return(
-              <div className='row ' >
+              <div className='row ' key={index} >
                 <div className='col'>
                  {product.id}
                 </div>
