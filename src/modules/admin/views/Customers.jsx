@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import usersService from '../../../Services/Firebase/Users'
 import Buton from '../components/Buton';
+import CrateUser from '../components/CrateUser';
 
 const Customers = () => {
 
@@ -20,6 +21,7 @@ const Customers = () => {
   })
   return (
     <div className='adminpage' >
+      { createForm ? <CrateUser handler={setUsers} state={users} showHandler={showCreate} /> : ''}
       <div className='Table'>
 
         <div className='row head' >
@@ -41,9 +43,9 @@ const Customers = () => {
         </div>
 
         {
-          users.map((user)=> {
+          users.map((user,index)=> {
             return(
-              <div className='row ' >
+              <div className='row ' key={index} >
                 <div className='col'>
                 {user.id}
                 </div>

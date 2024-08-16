@@ -9,4 +9,17 @@ const getAll = async () => {
   return users;
 };
 
-export default { getAll }
+const create = async (newObject) => {
+  const docRef = await addDoc(usersCollections, newObject);
+  const docSnap = await getDoc(docRef);
+  return { id: docRef.id, ...docSnap.data() };
+};
+
+const update = async (id, newObject) => {
+  const userDoc = doc(db, 'Users', id);
+  await updateDoc(userDoc, newObject);
+  const updatedDoc = await getDoc(userDoc);
+  return { id: updatedDoc.id, ...updatedDoc.data() };
+};
+
+export default { getAll, create, update }

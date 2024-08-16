@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import stockService from '../../../Services/Firebase/Stock'
 import Buton from '../components/Buton';
+import { CreateProduct } from '../components/CreateProduct';
 
 const Stock = () => {
 
   const [products, setProducts] = useState([]);
   const [createForm, setCreateForm] = useState(false);
 
-  const showCreate = ()=>{
-    setCreateForm(!createForm)
-  }
-
   useEffect(() => {
     stockService
       .getAll()
       .then( allProducts => {
         setProducts(allProducts);
-        
       })
   }, [])
 
+  const showCreate = ()=>{
+    setCreateForm(!createForm)
+  }
+
+
+
   return (
     <div className='adminpage' >
+      { createForm ? <CreateProduct /> : '' }
       <div className='Table'>
-
         <div className='row head' >
           <div className='col head'>
             ID
