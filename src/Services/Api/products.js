@@ -8,21 +8,16 @@ const getProduct = () => {
             .then(res=>res.json())
 }
 
-const create = () => {
-  fetch('https://fakestoreapi.com/products',{
-    method:"POST",
-    body:JSON.stringify(
-        {
-            title: 'test product',
-            price: 13.5,
-            description: 'lorem ipsum set',
-            image: 'https://i.pravatar.cc',
-            category: 'electronic'
-        }
-    )
+const create = (newProductObjet) => {
+  return fetch('https://fakestoreapi.com/products', {
+    method: "POST",
+    body: JSON.stringify(newProductObjet),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
-      .then(res=>res.json())
-}
+    .then(res => res.json());
+};
 
 const updateProduct = () => {
   fetch('https://fakestoreapi.com/products/7',{
