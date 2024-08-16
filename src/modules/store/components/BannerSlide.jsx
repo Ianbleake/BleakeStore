@@ -28,7 +28,6 @@ const BannerSlide = ({data}) => {
     }
   }
 
-
   return (
     <div className='BannerSection'>
       <button className='arrow left' onClick={backBannerHandler} >ᐊ</button>

@@ -22,7 +22,7 @@
 
 .maincontent{
  height: 100%;
- width:70%;
+ width:80%;
  overflow: scroll;
 }
 
@@ -66,7 +66,7 @@
   opacity: 0;
 }
 
-@keyframes slide {
+@keyframes slidee {
   0% {
     left: -100%;
   }
@@ -77,7 +77,7 @@
 
 .adminbtn:hover::before {
   opacity: 1;
-  animation: slide 2s infinite;
+  animation: slidee 2s infinite;
 }
 
 .adminbtn:hover {
@@ -85,15 +85,6 @@
   box-shadow: 10px 10px 0 #000;
   background-color: #000;
   color: #fff;
-}
-
-@keyframes slide {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
 }
 
 .adminbtn:active {
@@ -129,4 +120,49 @@
 .button-text span:last-child {
   font-size: 16px;
   text-transform: uppercase;
+}
+
+
+.Table {
+
+  margin: 10px auto;
+  width: 98%;
+  border: 4px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.row{
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 2px solid black ;
+  height: 30px;
+}
+
+.row.head{
+  height: 40px;
+}
+
+.col{
+  width: 12.5%;
+  border-right: 4px solid black;
+  text-align: center;
+  line-height: 30px;
+  overflow: hidden;
+}
+
+.col:last-child{
+  border: none;
+}
+
+.col.head{
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.cta{
+  width: 100%;
+  padding: 0 25%;
+  margin-top: 20px;
 }
