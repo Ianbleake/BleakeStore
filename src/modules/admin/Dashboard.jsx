@@ -10,7 +10,8 @@ import Ships from './views/Ships';
 
 const Dashboard = () => {
 
-  const [showPage, setPage] = useState('')
+  const [showPage, setPage] = useState('user')
+  
 
   const pageHandler = (page)=>{
     setPage(page)

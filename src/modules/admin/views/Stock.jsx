@@ -44,10 +44,10 @@ const Stock = () => {
             Descripcion
           </div>
           <div className='col head'>
-            SKU
+            
           </div>
           <div className='col head' >
-            Descuento
+           
           </div>   
         </div>
 
@@ -74,9 +74,10 @@ const Stock = () => {
                   {product.sku}
                 </div>
                 <div className='col'>
-                  
+                  <button className='btn modify' > Editar </button>
                 </div>
                 <div className='col' >
+                  <button className='btn modify' > Borrar </button>
                 </div>   
             </div>
             )

@@ -136,7 +136,7 @@
   display: flex;
   justify-content: space-around;
   border-bottom: 2px solid black ;
-  height: 30px;
+  height: 50px;
 }
 
 .row.head{
@@ -144,10 +144,10 @@
 }
 
 .col{
-  width: 12.5%;
+  width: 100%;
   border-right: 4px solid black;
   text-align: center;
-  line-height: 30px;
+  line-height: 50px;
   overflow: hidden;
 }
 
@@ -165,4 +165,11 @@
   width: 100%;
   padding: 0 25%;
   margin-top: 20px;
+}
+
+.btn.modify {
+  height: 50%;
+  width: 85%;
+  font-size: 17px;
+  margin-top: 15px;
 }
