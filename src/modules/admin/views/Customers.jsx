@@ -6,6 +6,7 @@ import CrateUser from '../components/CrateUser';
 const Customers = () => {
   const [users, setUsers] = useState([]);
   const [createForm, setCreateForm] = useState(false);
+  const [info ]
 
   const showCreate = () => {
     setCreateForm(!createForm);
