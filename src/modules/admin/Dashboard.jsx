@@ -10,7 +10,7 @@ import Ships from './views/Ships';
 
 const Dashboard = () => {
 
-  const [showPage, setPage] = useState('user')
+  const [showPage, setPage] = useState('')
   
 
   const pageHandler = (page)=>{
@@ -27,6 +27,7 @@ const Dashboard = () => {
         <Button label={'Pedidos'} handler={pageHandler} value={'ship'} />
       </aside>
       <main className='maincontent'>
+        
         {
           showPage === 'user' ? <Customers/> :
           showPage === 'stock' ? <Stock/> :

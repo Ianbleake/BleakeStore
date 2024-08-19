@@ -151,6 +151,12 @@
   overflow: hidden;
 }
 
+.col.click{
+  cursor: pointer;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
 .col:last-child{
   border: none;
 }
@@ -249,3 +255,33 @@
   box-shadow: none;
 }
 
+.window {
+  position: absolute;
+  height: 40%;
+  width: 70%;
+  top: 5vh;
+  z-index: 4;
+  margin-left: 22px;
+  background-color: #fff;
+  border: 4px solid black;
+  box-shadow: 4px 4px black;
+  padding: 10px;
+}
+
+.infoTable {
+ 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.infotitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 35px;
+}
+
+.info{
+ font-weight: normal;
+ font-size: 15px;
+}

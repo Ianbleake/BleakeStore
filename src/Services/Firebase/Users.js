@@ -9,6 +9,16 @@ const getAll = async () => {
   return users;
 };
 
+const getById = async (id) => {
+  const userDoc = doc(db, 'Users', id);
+  const docSnap = await getDoc(userDoc);
+  if (docSnap.exists()) {
+    return { id: docSnap.id, ...docSnap.data() };
+  } else {
+    throw new Error('User not found');
+  }
+};
+
 const create = async (newObject) => {
   const docRef = await addDoc(usersCollections, newObject);
   const docSnap = await getDoc(docRef);
@@ -28,6 +38,6 @@ const remove = async (id) => {
   return { id };
 };
 
-const userService = { getAll, create, update, remove };
+const userService = { getAll, getById, create, update, remove };
 
 export default userService;

@@ -2,15 +2,22 @@ import React, { useState, useEffect } from 'react';
 import usersService from '../../../Services/Firebase/Users';
 import Buton from '../components/Buton';
 import CrateUser from '../components/CrateUser';
+import UserInfo from '../components/UserInfo';
 
 const Customers = () => {
   const [users, setUsers] = useState([]);
   const [createForm, setCreateForm] = useState(false);
-  const [info ]
+  const [info,setInfo ] = useState({show: false, id: ''});
+
 
   const showCreate = () => {
     setCreateForm(!createForm);
   };
+
+  const showInfo = (idUser) => {
+    const infoObjet = { show: !info.show, id: idUser }
+    setInfo(infoObjet)
+  }
 
   useEffect(() => {
     usersService.getAll().then((allUsers) => {
@@ -27,6 +34,7 @@ const Customers = () => {
   return (
     <div className='adminpage'>
       {createForm ? <CrateUser handler={setUsers} state={users} showHandler={showCreate} /> : ''}
+      {info.show ? <UserInfo user={info.id} showhandler={showInfo} /> : ''}
       <div className='Table'>
         <div className='row head'>
           <div className='col head'>ID</div>
@@ -35,19 +43,15 @@ const Customers = () => {
           <div className='col head'>Email</div>
           <div className='col head'>Password</div>
           <div className='col head'></div>
-          <div className='col head'></div>
         </div>
 
         {users.map((user, index) => (
           <div className='row' key={index}>
             <div className='col'>{user.id}</div>
-            <div className='col'>{user.username}</div>
+            <div className='col click' onClick={()=>showInfo(user.id)}>{user.username}</div>
             <div className='col'>{user.name}</div>
             <div className='col'>{user.email}</div>
             <div className='col'>{user.password}</div>
-            <div className='col'>
-              <button className='btn modify'>Editar</button>
-            </div>
             <div className='col'>
               <button className='btn modify' onClick={() => handleDelete(user.id)}>Borrar</button>
             </div>
