@@ -1,5 +1,5 @@
 import { db } from './config';
-import { collection, getDocs, addDoc, updateDoc, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore';
 
 const usersCollections = collection(db, 'Users');
 
@@ -22,6 +22,12 @@ const update = async (id, newObject) => {
   return { id: updatedDoc.id, ...updatedDoc.data() };
 };
 
-const userService = { getAll, create, update };
+const remove = async (id) => {
+  const userDoc = doc(db, 'Users', id);
+  await deleteDoc(userDoc);
+  return { id };
+};
+
+const userService = { getAll, create, update, remove };
 
 export default userService;

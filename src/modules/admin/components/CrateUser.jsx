@@ -24,7 +24,7 @@ const CrateUser = ({handler,state,showHandler}) => {
   const handleSubmit = (event) =>{
     event.preventDefault();
     const userObjet = {
-      user: userData,
+      username: userData,
       name: nameData,
       email: emailData,
       password: passData
@@ -40,7 +40,6 @@ const CrateUser = ({handler,state,showHandler}) => {
           setPassData('');
           showHandler();
         })
-    
   }
 
   return (
