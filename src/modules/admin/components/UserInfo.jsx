@@ -40,7 +40,7 @@ const UserInfo = ({ user, showhandler,handler, state }) => {
     }
   };
 
-  const handleSubmit = (event) =>{
+  const handleSubmit = (event) => {
     event.preventDefault();
     const userObjet = {
       username: userData,
@@ -54,18 +54,17 @@ const UserInfo = ({ user, showhandler,handler, state }) => {
         city: cityData
       },
       phone: phoneData
-    }
-
-    console.log('Update:',userObjet)
-
-    userService
-      .update(user,userObjet)
-        .then(returnedUSer => {
-          console.log('Response:',returnedUSer)
-          //handler(state.concat(returnedUSer));
-          showhandler();
-        })
-  }
+    };
+  
+    userService.update(user, userObjet).then(returnedUser => {
+      const updatedUsers = state.map(u => 
+        u.id === user ? returnedUser : u
+      ); 
+      handler(updatedUsers);
+      showhandler();
+    });
+  };
+  
 
   const editHandler = ()=>{
     setEdit(!edit);

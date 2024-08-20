@@ -34,7 +34,7 @@ const Customers = () => {
   return (
     <div className='adminpage'>
       {createForm ? <CrateUser handler={setUsers} state={users} showHandler={showCreate} /> : ''}
-      {info.show ? <UserInfo user={info.id} showhandler={showInfo} /> : ''}
+      {info.show ? <UserInfo handler={setUsers} state={users} user={info.id} showhandler={showInfo} /> : ''}
       <div className='Table'>
         <div className='row head'>
           <div className='col head'>ID</div>
