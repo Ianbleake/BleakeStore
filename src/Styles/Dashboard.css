@@ -46,6 +46,8 @@
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .adminbtn::before {
@@ -284,4 +286,25 @@
 .info{
  font-weight: normal;
  font-size: 15px;
+}
+
+.pinfo {
+  width: 50%;
+}
+
+.adinfo {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.pinfo, .adinfo {
+  display: flex;
+  flex-direction: column;
+  padding-left: 7%;
+}
+
+.window.userinfo {
+  height: auto;
 }

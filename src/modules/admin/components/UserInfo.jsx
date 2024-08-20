@@ -3,15 +3,89 @@ import userService from '../../../Services/Firebase/Users';
 import Loader from './Loader';
 import Buton from './Buton';
 
-const UserInfo = ({ user, showhandler }) => {
+const UserInfo = ({ user, showhandler,handler, state }) => {
   const [info, setInfo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [edit,setEdit] = useState(true);
+  const [userData,setUserData] = useState('')
+  const [nameData,setNameData] = useState('');
+  const [emailData,setEmailData] = useState('');
+  const [passData,setPassData] = useState('');
+  const [streetData,setStreetData] = useState('');
+  const [numberData,setNumberData] = useState('');
+  const [zipData,setZipData] = useState('');
+  const [cityData,setCityData] = useState('');
+  const [phoneData,setPhoneData] = useState('');
+
+  const handleChange = (event) =>{
+    const { name, value } = event.target;
+    if(name === 'username'){
+      setUserData(value);
+    }else if(name === 'name'){
+      setNameData(value);
+    } else if(name === 'email'){
+        setEmailData(value);
+    } else if(name === 'pass'){
+        setPassData(value);
+    } else if(name === 'street'){
+      setStreetData(value);
+    }  else if(name === 'number'){
+      setNumberData(value);
+    } else if(name === 'zip'){
+      setZipData(value);
+    } else if(name === 'city'){
+      setCityData(value);
+    } else if(name === 'phone'){
+      setPhoneData(value);
+    }
+  };
+
+  const handleSubmit = (event) =>{
+    event.preventDefault();
+    const userObjet = {
+      username: userData,
+      name: nameData,
+      email: emailData,
+      password: passData,
+      address: {
+        street: streetData,
+        number: numberData,
+        zip: zipData,
+        city: cityData
+      },
+      phone: phoneData
+    }
+
+    console.log('Update:',userObjet)
+
+    userService
+      .update(user,userObjet)
+        .then(returnedUSer => {
+          console.log('Response:',returnedUSer)
+          //handler(state.concat(returnedUSer));
+          showhandler();
+        })
+  }
+
+  const editHandler = ()=>{
+    setEdit(!edit);
+  }
 
   useEffect(() => {
     userService.getById(user).then((res) => {
       setInfo(res);
+      setUserData(res.username)
+      setNameData(res.name);
+      setEmailData(res.email);
+      setPhoneData(res.phone);
+      setPassData(res.password);
+      setStreetData(res.address.street);
+      setNumberData(res.address.number);
+      setZipData(res.address.zip);
+      setCityData(res.address.city);
       setLoading(false);
-    });
+    }
+    );
   }, [user]);
 
   if (loading) {
@@ -19,28 +93,61 @@ const UserInfo = ({ user, showhandler }) => {
   }
 
   return (
-    <div className='window userinfo'>
-      <div className='close' onClick={showhandler}>X</div>
-      <h2 className='title'>Usuario: {info.username}</h2>
-      <div className='infoTable'>
-        <div className='pinfo'>
-          <div className='infotitle' >Nombre: <span className='info' >{info.name}</span></div>
-          <div className='infotitle' >Correo: <span className='info'>{info.email}</span></div>
-          <div className='infotitle' >Teléfono: <span className='info'>{info.phone}</span></div>
-        </div>
-        <div className='adinfo'>
-          <div className='infotitle'>Dirección:</div>
-          {info.address ? (
-            <div className='info'>{info.address.street} {info.address.number} {info.address.zip} {info.address.city}</div>
-          ) : (
-            <div>No disponible</div>
-          )}
-        </div>
-      </div>
-      <div className='cta'>
-          <Buton label={'Editar'} />
-      </div>
-    </div>
+    <>
+      {
+        edit ? 
+        <div className='window userinfo'>
+          <div className='close' onClick={showhandler}>X</div>
+          <h2 className='title'>Usuario: {info.username}</h2>
+          <div className='infoTable'>
+            <div className='pinfo'>
+              <div className='infotitle' >Nombre: <span className='info' >{info.name}</span></div>
+              <div className='infotitle' >Correo: <span className='info'>{info.email}</span></div>
+              <div className='infotitle' >Teléfono: <span className='info'>{info.phone}</span></div>
+            </div>
+            <div className='adinfo'>
+              <div className='infotitle'>Dirección:</div>
+              {info.address ? (
+                <div className='info'>{info.address.street} {info.address.number} {info.address.zip} {info.address.city}</div>
+              ) : (
+                <div>No disponible</div>
+              )}
+            </div>
+          </div>
+          <div className='cta'>
+              <Buton label={'Editar'} handler={editHandler} />
+          </div>
+        </div> :
+        <form className='window userinfo' onSubmit={handleSubmit}>
+          <div className='close' onClick={showhandler}>X</div>
+          <div className='title'>Usuario:<input value={userData} className='inpt' name='username' onChange={handleChange} placeholder={info.username} type="text" /></div>
+          <div className='infoTable edit'>
+            <div className='pinfo'>
+              <div className='infotitle' >Nombre: <input value={nameData} name='name' className='inpt' onChange={handleChange} placeholder={info.name} type="text" /> </div>
+              <div className='infotitle' >Correo: <input value={emailData} name='email' className='inpt' onChange={handleChange} placeholder={info.email} type="text" /> </div>
+              <div className='infotitle' >Teléfono: <input value={phoneData} name='phone' className='inpt' onChange={handleChange} placeholder={info.phone} type="text" /> </div>
+              <div className='infotitle' >Contraseña: <input value={passData} name='pass' className='inpt' onChange={handleChange} placeholder={info.password} type="text" /> </div>
+            </div>
+            <div className='adinfo'>
+              <div className='infotitle'>Dirección:</div>
+              {info.address ? (
+                <div className='info'>
+                  <input value={streetData} className='inpt' name='street' onChange={handleChange} placeholder={info.address.street} type="text" />
+                  <input value={numberData} className='inpt' name='number' onChange={handleChange} placeholder={info.address.number} type="text" />
+                  <input value={zipData} className='inpt' name='zip' onChange={handleChange} placeholder={info.address.zip} type="text" />
+                  <input value={cityData} className='inpt' name='city' onChange={handleChange} placeholder={info.address.city} type="text" />
+                </div>
+              ) : (
+                <div>No disponible</div>
+              )}
+            </div>
+          </div>
+          <div className='cta'>
+            <input className="adminbtn"  type="submit" value="Actualizar" />
+          </div>
+        </form>
+      }
+    </>
   );
 };
 
