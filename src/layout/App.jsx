@@ -37,7 +37,7 @@ const App = () => {
       )}
       {location.pathname !== '/admin' ? (
         <div className="AppBody">
-          {login ? <LoginPopUp /> : ''}
+          {login ? <LoginPopUp showhandler={loginHandler} /> : ''}
           {cart ? <Cart handler={cartHandler} /> : ''}
           {menu ? <PopMenu /> : ''}
           <Routes>

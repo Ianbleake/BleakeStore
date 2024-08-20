@@ -1,15 +1,77 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import usersService from '../../../Services/Firebase/Users'
+import Notification from '../components/Notification';
 
-const LoginPopUp = () => {
+const LoginPopUp = ({showhandler}) => {
 
-  useEffect(() => {
+  const [username,setUsername] = useState('');
+  const [name,setName] = useState('');
+  const [email,setEmail] = useState('');
+  const [pass,setPass] = useState('');
+  const [logmail,setLogmail] = useState('');
+  const [logpass,setLogPass] = useState('');
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if(name === 'username'){
+      setUsername(value);
+    }else if(name ==='name'){
+      setName(value);
+    }else if(name ==='email'){
+      setEmail(value);
+    }else if(name ==='password'){
+      setPass(value);
+    }
+    else if(name === 'logmail'){
+      setLogmail(value);
+    }else if(name === 'logpass'){
+      setLogPass(value);
+    }
+  }
+
+  const handleLog = (event)=>{
+    event.preventDefault();
     usersService
-      .getAll()
-      .then( users => {
-        console.log(users)
-      })
-  }, [])
+      .checkUserExists(logmail,logpass)
+        .then(response => {
+          if(response === null){
+             
+          }else{
+            
+            console.log('User loged',response)
+          }
+          setLogmail('');
+          setLogPass('');
+          //showhandler();
+        })
+  }
+
+  const handleSubmint = (event)=>{
+    event.preventDefault();
+    const userObjet = {
+      username: username,
+      name: name,
+      email: email,
+      password: pass,
+      address: {
+        street: '',
+        number: '',
+        zip: '',
+        city: ''
+      },
+      phone: ''
+    }
+    
+    usersService
+      .create(userObjet)
+        .then(response => {
+          console.log('New User:',response)
+          setUsername('');
+          setName('');
+          setEmail('');
+          setPass('');
+        })
+  }
 
   return (
   <div className="wrapper">
@@ -21,18 +83,19 @@ const LoginPopUp = () => {
           <div className="flip-card__inner">
               <div className="flip-card__front">
                   <div className="title">Log in</div>
-                  <form className="flip-card__form" action="">
-                    <input className="flip-card__input" name="email" placeholder="Email" type="email" />
-                    <input className="flip-card__input" name="password" placeholder="Password" type="password" />
+                  <form className="flip-card__form" onSubmit={handleLog} >
+                    <input className="flip-card__input" value={logmail} onChange={handleChange} name="logmail" placeholder="Email" type="email" />
+                    <input className="flip-card__input" value={logpass} onChange={handleChange} name="logpass" placeholder="Password" type="password" />
                     <button className="flip-card__btn">Let`s go!</button>
                   </form>
               </div>
               <div className="flip-card__back">
                   <div className="title">Sign up</div>
-                  <form className="flip-card__form" action="">
-                    <input className="flip-card__input" placeholder="Name" type="name" />
-                    <input className="flip-card__input" name="email" placeholder="Email" type="email" />
-                    <input className="flip-card__input" name="password" placeholder="Password" type="password" />
+                  <form className="flip-card__form" onSubmit={handleSubmint}>
+                    <input className="flip-card__input" value={username} onChange={handleChange} name='username'  placeholder="Username" type="text" />
+                    <input className="flip-card__input" value={name} onChange={handleChange} name='name'  placeholder="Name" type="text" />
+                    <input className="flip-card__input" value={email} onChange={handleChange} name="email" placeholder="Email" type="email" />
+                    <input className="flip-card__input" value={pass} onChange={handleChange} name="password" placeholder="Password" type="password" />
                     <button className="flip-card__btn">Confirm!</button>
                   </form>
               </div>
