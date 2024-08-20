@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/BleakeStore/static/css/main.c0f918bc.css",
-    "main.js": "/BleakeStore/static/js/main.639af94c.js",
+    "main.css": "/BleakeStore/static/css/main.e026dc3f.css",
+    "main.js": "/BleakeStore/static/js/main.e5711353.js",
     "static/media/banner.png": "/BleakeStore/static/media/banner.33a6902e5e3c47254a3e.png",
     "index.html": "/BleakeStore/index.html",
-    "main.c0f918bc.css.map": "/BleakeStore/static/css/main.c0f918bc.css.map",
-    "main.639af94c.js.map": "/BleakeStore/static/js/main.639af94c.js.map"
+    "main.e026dc3f.css.map": "/BleakeStore/static/css/main.e026dc3f.css.map",
+    "main.e5711353.js.map": "/BleakeStore/static/js/main.e5711353.js.map"
   },
   "entrypoints": [
-    "static/css/main.c0f918bc.css",
-    "static/js/main.639af94c.js"
+    "static/css/main.e026dc3f.css",
+    "static/js/main.e5711353.js"
   ]
 }
