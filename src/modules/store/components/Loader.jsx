@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loader = () => {
   return (
-    <div class="loader">
+    <div class="loader shop">
       <span class="l">
         <svg
           xmlns="http://www.w3.org/2000/svg"
