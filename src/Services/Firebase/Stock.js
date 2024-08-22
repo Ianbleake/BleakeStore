@@ -1,12 +1,12 @@
 import { db } from './config';
-import { collection, getDocs, addDoc, updateDoc, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore';
 
 const productsCollections = collection(db, 'Productos');
 
 const getAll = async () => {
   const snapshot = await getDocs(productsCollections);
-  const users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  return users;
+  const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  return products;
 };
 
 const create = async (newObject) => {
@@ -16,12 +16,18 @@ const create = async (newObject) => {
 };
 
 const update = async (id, newObject) => {
-  const noteDoc = doc(db, 'notes', id);
-  await updateDoc(noteDoc, newObject);
-  const updatedDoc = await getDoc(noteDoc);
+  const productDoc = doc(db, 'Productos', id);
+  await updateDoc(productDoc, newObject);
+  const updatedDoc = await getDoc(productDoc);
   return { id: updatedDoc.id, ...updatedDoc.data() };
 };
 
-const ProductServices = { getAll, create, update }
+const remove = async (id) => {
+  const productDoc = doc(db, 'Productos', id); 
+  await deleteDoc(productDoc);
+  return { id }; 
+};
 
-export default ProductServices
+const ProductServices = { getAll, create, update, remove };
+
+export default ProductServices;

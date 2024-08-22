@@ -4,9 +4,11 @@ import stockService from '../../../Services/Firebase/Stock'
 import Buton from '../components/Buton';
 import { CreateProduct } from '../components/CreateProduct';
 import Loader from '../components/Loader';
+import { useNotificacion } from '../../store/contexts/NotificationContext';
 
 const Stock = () => {
 
+  const { setNotificacion } = useNotificacion();
   const [products, setProducts] = useState([]);
   const [createForm, setCreateForm] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -19,13 +21,36 @@ const Stock = () => {
         setLoading(false);
       })
       .catch(error => {
-        console.error("Error loading products:", error);
-        setLoading(false); // En caso de error, también desactiva el loader
+        setNotificacion({
+          role: 'error', 
+          message: `Error al cargar productos ${error}`,
+          show: true,
+        });
+        setTimeout(() => {
+          setNotificacion((prev) => ({ ...prev, show: false }));
+        }, 3000);
+        setLoading(false);
       });
-  }, [])
+  }, [setNotificacion])
 
   const showCreate = ()=>{
     setCreateForm(!createForm)
+  }
+
+  const handleDalete = (id) => {
+    stockService
+      .remove(id)
+        .then(()=>{
+          setNotificacion({
+            role: 'error', 
+            message: `Producto Eliminado`,
+            show: true,
+          });
+          setTimeout(() => {
+            setNotificacion((prev) => ({ ...prev, show: false }));
+          }, 3000);
+          setProducts(products.filter(prod => prod.id !== id))
+        })
   }
 
 
@@ -78,7 +103,7 @@ const Stock = () => {
                     {product.stock}
                   </div>
                   <div className='col' >
-                    <button className='btn modify' > Borrar </button>
+                    <button className='btn modify' onClick={()=>handleDalete(product.id)} > Borrar </button>
                   </div>   
               </div>
               )
