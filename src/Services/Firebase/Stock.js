@@ -28,6 +28,16 @@ const remove = async (id) => {
   return { id }; 
 };
 
-const ProductServices = { getAll, create, update, remove };
+const getById = async (id) => {
+  const userDoc = doc(db, 'Productos', id);
+  const docSnap = await getDoc(userDoc);
+  if (docSnap.exists()) {
+    return { id: docSnap.id, ...docSnap.data() };
+  } else {
+    throw new Error('Producto no encontrado');
+  }
+}; 
+
+const ProductServices = { getAll, create, update, remove, getById };
 
 export default ProductServices;

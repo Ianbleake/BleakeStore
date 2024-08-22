@@ -306,6 +306,24 @@
   padding-left: 7%;
 }
 
-.window.userinfo {
+.window.userinfo,.window.productinfo {
   height: auto;
+}
+
+.window.productinfo.edit{
+  height: 700px;
+  overflow: scroll;
+}
+
+.prodimage {
+  height: 250px;
+  width: 100%;
+  border: 2px solid black;
+  box-shadow: 4px 4px 0px black;
+  padding: 15px;
+}
+
+.infotitle.edit {
+  display: flex;
+  flex-direction: column;
 }

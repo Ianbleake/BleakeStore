@@ -5,6 +5,7 @@ import Buton from '../components/Buton';
 import { CreateProduct } from '../components/CreateProduct';
 import Loader from '../components/Loader';
 import { useNotificacion } from '../../store/contexts/NotificationContext';
+import ProductInfo from '../components/ProductInfo';
 
 const Stock = () => {
 
@@ -12,6 +13,12 @@ const Stock = () => {
   const [products, setProducts] = useState([]);
   const [createForm, setCreateForm] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [info,setInfo] = useState({show: false, id: ''})
+
+  const showInfo = (idUser) => {
+    const infoObjet = { show: !info.show, id: idUser }
+    setInfo(infoObjet)
+  }
 
   useEffect(() => {
     stockService
@@ -61,6 +68,7 @@ const Stock = () => {
       loading ? <Loader/> : 
       <div className='adminpage' >
         { createForm ? <CreateProduct handler={setProducts} state={products} showHandler={showCreate} /> : '' }
+        { info.show ? <ProductInfo handler={setProducts} state={products} product={info.id} showhandler={showInfo} /> : '' }
         <div className='Table'>
           <div className='row head' >
             <div className='col head'>
@@ -87,21 +95,11 @@ const Stock = () => {
             products.map((product,index)=> {
               return(
                 <div className='row ' key={index} >
-                  <div className='col'>
-                  {product.id}
-                  </div>
-                  <div className='col'>
-                    {product.category}
-                  </div>
-                  <div className='col'>
-                    {product.title}
-                  </div>
-                  <div className='col'>
-                    {product.price}
-                  </div>
-                  <div className='col'>
-                    {product.stock}
-                  </div>
+                  <div className='col'>{product.id}</div>
+                  <div className='col'>{product.category}</div>
+                  <div className='col click' onClick={()=>showInfo(product.id)}>{product.title}</div>
+                  <div className='col'>{product.price}</div>
+                  <div className='col'>{product.stock}</div>
                   <div className='col' >
                     <button className='btn modify' onClick={()=>handleDalete(product.id)} > Borrar </button>
                   </div>   
@@ -112,7 +110,7 @@ const Stock = () => {
 
         </div>
 
-        <div className='cta' >
+        <div className='cta'>
           <Buton label={'Crear'} handler={showCreate} />   
         </div>
       </div>
