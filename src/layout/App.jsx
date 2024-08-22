@@ -52,6 +52,7 @@ const App = () => {
           </div>
         ) : (
           <div>
+            <Notification /> 
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/admin" element={<Dashboard />} />

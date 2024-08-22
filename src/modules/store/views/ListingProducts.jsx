@@ -1,6 +1,7 @@
 import React from 'react'
 import ProductCard from '../components/ProductCard'
-import productsServices from '../../../Services/Api/products';
+//import productsServices from '../../../Services/Api/products';
+import productsServices from '../../../Services/Firebase/Stock';
 import { useState, useEffect } from 'react';
 import Loader from '../components/Loader';
 
