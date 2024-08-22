@@ -196,7 +196,7 @@
 }
 
 .form.user{
-  top: 5vh;
+  top: 1vh;
 }
 
 .headertitle {
@@ -229,6 +229,7 @@
   transition: all 0.3s ease;
   background-color: #fff;
   margin-bottom: 10px;
+  min-width: 230px;
 }
 
 .subtn{
@@ -283,7 +284,7 @@
   line-height: 35px;
 }
 
-.info{
+.infoo{
  font-weight: normal;
  font-size: 15px;
 }

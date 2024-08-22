@@ -12,6 +12,7 @@ const CrateUser = ({handler,state,showHandler}) => {
   const [zipData,setZipData] = useState('');
   const [cityData,setCityData] = useState('');
   const [phoneData,setPhoneData] = useState('');
+  const [typeData,setTypeData] = useState('');
 
 
   const handleChange = (event) =>{
@@ -36,7 +37,11 @@ const CrateUser = ({handler,state,showHandler}) => {
       setCityData(value);
     } else if(name === 'phone'){
       setPhoneData(value);
+    }else if(name === 'type'){
+      setTypeData(value);
+      console.log('Type',value);
     }
+    
   };
 
   const handleSubmit = (event) =>{
@@ -52,7 +57,8 @@ const CrateUser = ({handler,state,showHandler}) => {
         zip: zipData,
         city: cityData
       },
-      phone: phoneData
+      phone: phoneData,
+      type: typeData
     }
 
     usersService
@@ -81,6 +87,11 @@ const CrateUser = ({handler,state,showHandler}) => {
         <input className='inpt' value={zipData} name='zip' type='text' placeholder='Zip:' onChange={handleChange} required />
         <input className='inpt' value={cityData} name='city' type='text' placeholder='Ciudad:' onChange={handleChange} required />
         <input className='inpt' value={phoneData} name='phone' type='text' placeholder='Telefono' onChange={handleChange} required />
+        <select className='inpt' name="type" onChange={handleChange}>
+          <option value="" selected >Seleccionar</option>
+          <option value="Admin">Empleado</option>
+          <option value="Customer">Cliente</option>
+        </select>
         <input type="submit" className='subtn' value="CREAR"/>
       </div>
     </form>

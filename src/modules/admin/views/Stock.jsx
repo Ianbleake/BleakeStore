@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-//import stockService from '../../../Services/Firebase/Stock'
-import stockService from '../../../Services/Api/products'
+import stockService from '../../../Services/Firebase/Stock'
+//import stockService from '../../../Services/Api/products'
 import Buton from '../components/Buton';
 import { CreateProduct } from '../components/CreateProduct';
 import Loader from '../components/Loader';
@@ -42,23 +42,20 @@ const Stock = () => {
               ID
             </div>
             <div className='col head'>
+              Categoria
+            </div>
+            <div className='col head'>
               Nombre
             </div>
             <div className='col head'>
               Precio
             </div>
-            <div className='col head'>
-              Categoria
-            </div>
-            <div className='col head'>
-              Descripcion
-            </div>
-            <div className='col head'>
-              
+            <div className='col head' >
+              Stock
             </div>
             <div className='col head' >
             
-            </div>   
+            </div>    
           </div>
 
           {
@@ -69,19 +66,16 @@ const Stock = () => {
                   {product.id}
                   </div>
                   <div className='col'>
+                    {product.category}
+                  </div>
+                  <div className='col'>
                     {product.title}
                   </div>
                   <div className='col'>
                     {product.price}
                   </div>
                   <div className='col'>
-                    {product.category}
-                  </div>
-                  <div className='col'>
-                    {product.description}
-                  </div>
-                  <div className='col'>
-                    <button className='btn modify' > Editar </button>
+                    {product.stock}
                   </div>
                   <div className='col' >
                     <button className='btn modify' > Borrar </button>

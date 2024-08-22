@@ -52,12 +52,14 @@ const LoginPopUp = ({showhandler}) => {
           }else{
             setNotificacion({
               role: 'success', 
-              message: 'Inicio de sesion exitoso',
+              message: `Inicio de sesion exitoso, Gusto en verte ${response.username}`,
               show: true,
             });
+            setTimeout(() => {
+              setNotificacion((prev) => ({ ...prev, show: false }));
+            }, 3000);
 
             showhandler();
-            console.log('User loged',response)
           }
           setLogmail('');
           setLogPass('');
@@ -77,17 +79,37 @@ const LoginPopUp = ({showhandler}) => {
         zip: '',
         city: ''
       },
-      phone: ''
+      phone: '',
+      type: 'Customer'
     }
     
     usersService
       .create(userObjet)
         .then(response => {
-          console.log('New User:',response)
+          setNotificacion({
+            role: 'success', 
+            message: `Registro exitoso, Bienvenido ${response.username}`,
+            show: true,
+          });
+           setTimeout(() => {
+             setNotificacion((prev) => ({ ...prev, show: false }));
+           }, 5000);
+
           setUsername('');
           setName('');
           setEmail('');
           setPass('');
+        })
+        .catch(error => {
+          setNotificacion({
+            role: 'error', 
+            message: `Error en el registro: ${error}`,
+            show: true,
+          });
+
+           setTimeout(() => {
+             setNotificacion((prev) => ({ ...prev, show: false }));
+           }, 3000);
         })
   }
 

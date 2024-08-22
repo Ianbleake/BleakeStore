@@ -16,6 +16,7 @@ const UserInfo = ({ user, showhandler,handler, state }) => {
   const [zipData,setZipData] = useState('');
   const [cityData,setCityData] = useState('');
   const [phoneData,setPhoneData] = useState('');
+  const [typeData,setTypeData] = useState('');
 
   const handleChange = (event) =>{
     const { name, value } = event.target;
@@ -37,6 +38,8 @@ const UserInfo = ({ user, showhandler,handler, state }) => {
       setCityData(value);
     } else if(name === 'phone'){
       setPhoneData(value);
+    } else if(name === 'type'){
+      setTypeData(value);
     }
   };
 
@@ -53,7 +56,8 @@ const UserInfo = ({ user, showhandler,handler, state }) => {
         zip: zipData,
         city: cityData
       },
-      phone: phoneData
+      phone: phoneData,
+      type: typeData
     };
   
     userService.update(user, userObjet).then(returnedUser => {
@@ -82,6 +86,7 @@ const UserInfo = ({ user, showhandler,handler, state }) => {
       setNumberData(res.address.number);
       setZipData(res.address.zip);
       setCityData(res.address.city);
+      setTypeData(res.type);
       setLoading(false);
     }
     );
@@ -100,17 +105,18 @@ const UserInfo = ({ user, showhandler,handler, state }) => {
           <h2 className='title'>Usuario: {info.username}</h2>
           <div className='infoTable'>
             <div className='pinfo'>
-              <div className='infotitle' >Nombre: <span className='info' >{info.name}</span></div>
-              <div className='infotitle' >Correo: <span className='info'>{info.email}</span></div>
-              <div className='infotitle' >Teléfono: <span className='info'>{info.phone}</span></div>
+              <div className='infotitle' >Nombre: <span className='infoo' >{info.name}</span></div>
+              <div className='infotitle' >Correo: <span className='infoo'>{info.email}</span></div>
+              <div className='infotitle' >Teléfono: <span className='infoo'>{info.phone}</span></div>
             </div>
             <div className='adinfo'>
               <div className='infotitle'>Dirección:</div>
               {info.address ? (
-                <div className='info'>{info.address.street} {info.address.number} {info.address.zip} {info.address.city}</div>
+                <div className='infoo'>{info.address.street} {info.address.number} {info.address.zip} {info.address.city}</div>
               ) : (
                 <div>No disponible</div>
               )}
+              <div className='infotitle'>Tipo de Usuario:<span className='infoo' >{info.type}</span></div>
             </div>
           </div>
           <div className='cta'>
@@ -130,11 +136,16 @@ const UserInfo = ({ user, showhandler,handler, state }) => {
             <div className='adinfo'>
               <div className='infotitle'>Dirección:</div>
               {info.address ? (
-                <div className='info'>
+                <div className='infoo'>
                   <input value={streetData} className='inpt' name='street' onChange={handleChange} placeholder={info.address.street} type="text" />
                   <input value={numberData} className='inpt' name='number' onChange={handleChange} placeholder={info.address.number} type="text" />
                   <input value={zipData} className='inpt' name='zip' onChange={handleChange} placeholder={info.address.zip} type="text" />
                   <input value={cityData} className='inpt' name='city' onChange={handleChange} placeholder={info.address.city} type="text" />
+                  <div className='infotitle'>Tipo de Usuario: </div>
+                  <select className='inpt' name="type" value={info.type} onChange={handleChange}>
+                    <option value="Admin">Empleado</option>
+                    <option value="Customer">Cliente</option>
+                  </select>
                 </div>
               ) : (
                 <div>No disponible</div>

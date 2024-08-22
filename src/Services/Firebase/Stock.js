@@ -22,4 +22,6 @@ const update = async (id, newObject) => {
   return { id: updatedDoc.id, ...updatedDoc.data() };
 };
 
-export default { getAll, create, update }
+const ProductServices = { getAll, create, update }
+
+export default ProductServices
