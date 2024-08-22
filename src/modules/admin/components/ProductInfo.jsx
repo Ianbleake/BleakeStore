@@ -49,7 +49,6 @@ const ProductInfo = ({ product, showHandler, handler,state }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
     if (image) {
       const imageRef = ref(storage, `Products/${image.name}`);
       await uploadBytes(imageRef, image);
@@ -63,42 +62,73 @@ const ProductInfo = ({ product, showHandler, handler,state }) => {
         sku: sku,
         discount: discount,
         image: imageUrl
-        
-      };
+      }
 
-      productService
-        .create(productObjet)
-        .then((response) => {
-          setNotificacion({
-            role: 'success', 
-            message: 'Producto Creado',
-            show: true,
-          });
-          setTimeout(() => {
-            setNotificacion((prev) => ({ ...prev, show: false }));
-          }, 3000);
-          handler(state.concat(response))
-          showHandler();
+      productService.update(product,productObjet).then((resp) => {
+        const updatedProduct = state.map(u => 
+          u.id === product ? resp : u
+        );
+        handler(updatedProduct);
+        showHandler();
+        setNotificacion({
+          role: 'succes', 
+          message: `Producto: ${info.title}. Actualizado con exito.`,
+          show: true,
+        });
+        setTimeout(() => {
+          setNotificacion((prev) => ({ ...prev, show: false }));
+        }, 3000);
         })
-        .catch((error) => {
+        .catch(error =>{
           setNotificacion({
             role: 'error', 
-            message: `Error al cargar la imagen ${error}`,
+            message: `Error: ${error}`,
             show: true,
           });
           setTimeout(() => {
             setNotificacion((prev) => ({ ...prev, show: false }));
           }, 3000);
-        });
+        })
+
     } else {
-      setNotificacion({
-        role: 'Error', 
-        message: 'No se cargo imagen de producto',
-        show: true,
-      });
-      setTimeout(() => {
-        setNotificacion((prev) => ({ ...prev, show: false }));
-      }, 3000);
+
+      const productObjet = {
+        category: category,
+        title: title,
+        price: price,
+        description: description,
+        stock: stock,
+        sku: sku,
+        discount: discount,
+        image: info.image
+      }
+
+      productService.update(product,productObjet).then((resp) => {
+        const updatedProduct = state.map(u => 
+          u.id === product ? resp : u
+        );
+        handler(updatedProduct);
+        showHandler();
+        setNotificacion({
+          role: 'succes', 
+          message: `Producto: ${info.title}. Actualizado con exito.`,
+          show: true,
+        });
+        setTimeout(() => {
+          setNotificacion((prev) => ({ ...prev, show: false }));
+        }, 3000);
+        })
+        .catch(error =>{
+          setNotificacion({
+            role: 'error', 
+            message: `Error: ${error}`,
+            show: true,
+          });
+          setTimeout(() => {
+            setNotificacion((prev) => ({ ...prev, show: false }));
+          }, 3000);
+        })
+
     }
 
   };
@@ -149,7 +179,7 @@ const ProductInfo = ({ product, showHandler, handler,state }) => {
         </div>
       </div>
       :
-      <form className='window productinfo edit'>
+      <form className='window productinfo edit' onSubmit={handleSubmit}>
         <button className='close' onClick={showHandler}>X</button>
         <h2 className='title'>Producto:<input value={title} className='inpt' name='title' onChange={handleChange} placeholder={info.title} type="text" /></h2>
         <div className='infoTable'>
@@ -163,7 +193,9 @@ const ProductInfo = ({ product, showHandler, handler,state }) => {
           </div>
           <div className='prodimagecont'>
             <img src={info.image} alt={info.title} className='prodimage' />
+            <input className='inpt file' onChange={handleChange} name='image' type="file" />
           </div>
+          
         </div>
         <div className='cta'>
           <Buton label={'Actualizar'} />

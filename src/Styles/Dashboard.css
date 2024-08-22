@@ -315,6 +315,15 @@
   overflow: scroll;
 }
 
+.prodimagecont {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5vh;
+}
+
 .prodimage {
   height: 250px;
   width: 100%;
@@ -326,4 +335,8 @@
 .infotitle.edit {
   display: flex;
   flex-direction: column;
+}
+
+.inpt.file{
+  width: 100%;
 }
