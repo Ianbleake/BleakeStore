@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import usersService from '../../../Services/Firebase/Users'
-import Notification from '../components/Notification';
+import { useNotificacion } from '../contexts/NotificationContext';
+
 
 const LoginPopUp = ({showhandler}) => {
 
+  const { setNotificacion } = useNotificacion();
   const [username,setUsername] = useState('');
   const [name,setName] = useState('');
   const [email,setEmail] = useState('');
   const [pass,setPass] = useState('');
   const [logmail,setLogmail] = useState('');
   const [logpass,setLogPass] = useState('');
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -35,14 +38,29 @@ const LoginPopUp = ({showhandler}) => {
       .checkUserExists(logmail,logpass)
         .then(response => {
           if(response === null){
-             
+
+            setNotificacion({
+              role: 'error', 
+              message: 'Usuario y/o Contraseña incorrectos',
+              show: true,
+            });
+
+             setTimeout(() => {
+               setNotificacion((prev) => ({ ...prev, show: false }));
+             }, 3000);
+
           }else{
-            
+            setNotificacion({
+              role: 'success', 
+              message: 'Inicio de sesion exitoso',
+              show: true,
+            });
+
+            showhandler();
             console.log('User loged',response)
           }
           setLogmail('');
           setLogPass('');
-          //showhandler();
         })
   }
 

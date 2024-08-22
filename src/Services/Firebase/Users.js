@@ -3,7 +3,6 @@ import { collection, getDocs, addDoc, updateDoc, doc, getDoc, deleteDoc, query, 
 
 const usersCollections = collection(db, 'Users');
 
-// Función para comprobar si un usuario existe basado en su email y contraseña
 const checkUserExists = async (email, password) => {
   const q = query(usersCollections, where('email', '==', email), where('password', '==', password));
   const querySnapshot = await getDocs(q);
