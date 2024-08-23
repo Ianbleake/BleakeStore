@@ -3,9 +3,8 @@ import '../../Styles/Dashboard.css';
 import Button from './components/Buton'
 import Customers from './views/Customers';
 import Stock from './views/Stock';
-import Banners from './views/Banners';
-import Brands from './views/Brands';
 import Ships from './views/Ships';
+import Store from './views/Store';
 
 
 const Dashboard = () => {
@@ -22,17 +21,14 @@ const Dashboard = () => {
       <aside className='sidemenu'>
         <Button label={'Usuarios'} handler={pageHandler} value={'user'} />
         <Button label={'Inventario'} handler={pageHandler} value={'stock'} />
-        <Button label={'Banners'} handler={pageHandler} value={'banner'} />
-        <Button label={'Marcas'} handler={pageHandler} value={'brand'}  />
         <Button label={'Pedidos'} handler={pageHandler} value={'ship'} />
+        <Button label={'Tienda'} handler={pageHandler} value={'store'} />
       </aside>
       <main className='maincontent'>
-        
         {
           showPage === 'user' ? <Customers/> :
           showPage === 'stock' ? <Stock/> :
-          showPage === 'banner' ? <Banners/> :
-          showPage === 'brand' ? <Brands /> :
+          showPage === 'store' ? <Store/> :
           showPage === 'ship' ? <Ships/> :
           null
         }

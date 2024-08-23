@@ -58,7 +58,6 @@ const LoginPopUp = ({showhandler}) => {
             setTimeout(() => {
               setNotificacion((prev) => ({ ...prev, show: false }));
             }, 3000);
-
             showhandler();
           }
           setLogmail('');

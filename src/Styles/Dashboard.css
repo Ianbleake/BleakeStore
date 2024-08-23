@@ -340,3 +340,11 @@
 .inpt.file{
   width: 100%;
 }
+.selectsecc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+  padding: 13px;
+}
