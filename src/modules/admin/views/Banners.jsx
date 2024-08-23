@@ -3,9 +3,16 @@ import { bannersServices } from '../../../Services/Firebase/Store';
 import Buton from '../components/Buton';
 import { Link } from 'react-router-dom';
 import Loader from '../components/Loader';
+import CrateBanner from '../components/CrateBanner';
 const Banners = () => {
 
   const [banners,setBanners] = useState(null)
+  const [createForm, setCreateForm] = useState(false);
+
+  const showCreate = ()=>{
+    setCreateForm(!createForm)
+  }
+
   useEffect(() => {
     bannersServices
       .getAllBanners()
@@ -22,6 +29,7 @@ const Banners = () => {
   }
   return (
     <div className='contentpage'>
+      {createForm ? <CrateBanner handler={setBanners} state={banners} showHandler={showCreate} /> : ''}
       <div className='bansec' >
       {
         banners.map((banner,index) => {
@@ -41,7 +49,7 @@ const Banners = () => {
       }
       </div>
       <div className='cta'>
-          <Buton label={'Crear'} />   
+          <Buton label={'Crear'} handler={showCreate} />   
       </div>
     </div>
   )
