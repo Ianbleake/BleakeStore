@@ -3,8 +3,10 @@ import usersService from '../../../Services/Firebase/Users';
 import Buton from '../components/Buton';
 import CrateUser from '../components/CrateUser';
 import UserInfo from '../components/UserInfo';
+import { useNotificacion } from '../../store/contexts/NotificationContext';
 
 const Customers = () => {
+  const { setNotificacion } = useNotificacion();
   const [users, setUsers] = useState([]);
   const [createForm, setCreateForm] = useState(false);
   const [info,setInfo ] = useState({show: false, id: ''});
@@ -28,6 +30,14 @@ const Customers = () => {
   const handleDelete = (id) => {
     usersService.remove(id).then(() => {
       setUsers(users.filter(user => user.id !== id));
+      setNotificacion({
+        role: 'error', 
+        message: `Usuario Eliminado`,
+        show: true,
+      });
+      setTimeout(() => {
+        setNotificacion((prev) => ({ ...prev, show: false }));
+      }, 3000);
     });
   };
 

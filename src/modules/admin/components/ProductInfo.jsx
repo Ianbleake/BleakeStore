@@ -8,7 +8,7 @@ import { useNotificacion } from '../../store/contexts/NotificationContext';
 
 
 
-const ProductInfo = ({ product, showHandler, handler,state }) => {
+const ProductInfo = ({ product, showHandler, handler, state }) => {
 
   const { setNotificacion } = useNotificacion();
   const [info, setInfo] = useState(null);
@@ -71,7 +71,7 @@ const ProductInfo = ({ product, showHandler, handler,state }) => {
         handler(updatedProduct);
         showHandler();
         setNotificacion({
-          role: 'succes', 
+          role: 'success', 
           message: `Producto: ${info.title}. Actualizado con exito.`,
           show: true,
         });
@@ -110,13 +110,13 @@ const ProductInfo = ({ product, showHandler, handler,state }) => {
         handler(updatedProduct);
         showHandler();
         setNotificacion({
-          role: 'succes', 
+          role: 'success', 
           message: `Producto: ${info.title}. Actualizado con exito.`,
           show: true,
         });
         setTimeout(() => {
           setNotificacion((prev) => ({ ...prev, show: false }));
-        }, 3000);
+        }, 10000);
         })
         .catch(error =>{
           setNotificacion({
@@ -145,7 +145,6 @@ const ProductInfo = ({ product, showHandler, handler,state }) => {
         setSku(respond.sku);
         setStock(respond.stock);
         setDiscount(respond.discount);
-        setImage(respond.image);
       });
     }
   }, [product]);
@@ -189,7 +188,7 @@ const ProductInfo = ({ product, showHandler, handler,state }) => {
             <div className='infotitle edit'>Descripcion: <input value={description} className='inpt' name='des' onChange={handleChange} placeholder={info.description} type="text" /></div>
             <div className='infotitle edit'>SKU: <input value={sku} className='inpt' name='sku' onChange={handleChange} placeholder={info.sku} type="text" /></div>
             <div className='infotitle edit'>Stock: <input value={stock} className='inpt' name='stock' onChange={handleChange} placeholder={info.stock} type="text" /></div>
-            <div className='infotitle edit'>Descuento: <input value={discount} className='inpt' name='discount' onChange={handleChange} placeholder={info.description} type="text" /></div>
+            <div className='infotitle edit'>Descuento: <input value={discount} className='inpt' name='discount' onChange={handleChange} placeholder={info.discount} type="text" /></div>
           </div>
           <div className='prodimagecont'>
             <img src={info.image} alt={info.title} className='prodimage' />
@@ -198,8 +197,8 @@ const ProductInfo = ({ product, showHandler, handler,state }) => {
           
         </div>
         <div className='cta'>
-          <Buton label={'Actualizar'} />
-        </div>
+            <input className="adminbtn"  type="submit" value="Actualizar" />
+          </div>
       </form>
     }
     </>

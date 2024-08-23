@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import userService from '../../../Services/Firebase/Users';
 import Loader from './Loader';
 import Buton from './Buton';
+import { useNotificacion } from '../../store/contexts/NotificationContext';
 
 const UserInfo = ({ user, showhandler,handler, state }) => {
+
+  const { setNotificacion } = useNotificacion();
   const [info, setInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [edit,setEdit] = useState(true);
@@ -66,6 +69,14 @@ const UserInfo = ({ user, showhandler,handler, state }) => {
       ); 
       handler(updatedUsers);
       showhandler();
+      setNotificacion({
+        role: 'success', 
+        message: `Usuario ${info.username} Actualizado exitosamente`,
+        show: true,
+      });
+      setTimeout(() => {
+        setNotificacion((prev) => ({ ...prev, show: false }));
+      }, 3000);
     });
   };
   

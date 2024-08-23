@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import usersService from '../../../Services/Firebase/Users'
+import { useNotificacion } from '../../store/contexts/NotificationContext';
 
 const CrateUser = ({handler,state,showHandler}) => {
 
+  const { setNotificacion } = useNotificacion();
   const [userData,setUserData] = useState('')
   const [nameData,setNameData] = useState('');
   const [emailData,setEmailData] = useState('');
@@ -70,6 +72,14 @@ const CrateUser = ({handler,state,showHandler}) => {
           setEmailData('');
           setPassData('');
           showHandler();
+          setNotificacion({
+            role: 'success', 
+            message: `Usuario: ${returnedUSer.username} creado exitosamente`,
+            show: true,
+          });
+          setTimeout(() => {
+            setNotificacion((prev) => ({ ...prev, show: false }));
+          }, 5000);
         })
   }
 

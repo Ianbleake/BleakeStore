@@ -68,7 +68,7 @@ const Stock = () => {
       loading ? <Loader/> : 
       <div className='adminpage' >
         { createForm ? <CreateProduct handler={setProducts} state={products} showHandler={showCreate} /> : '' }
-        { info.show ? <ProductInfo handler={setProducts} state={products} product={info.id} showhandler={showInfo} /> : '' }
+        { info.show ? <ProductInfo handler={setProducts} state={products} product={info.id} showHandler={showInfo} /> : '' }
         <div className='Table'>
           <div className='row head' >
             <div className='col head'>
