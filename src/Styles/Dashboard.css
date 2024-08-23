@@ -348,3 +348,22 @@
   gap: 15px;
   padding: 13px;
 }
+
+.contentpage {
+  height: 95%;
+  width: 95%;
+  min-height: 82vh;
+  border: 2px solid black;
+  box-shadow: 4px 4px 0px black;
+  margin: auto;
+  overflow: scroll;
+  animation: show 500ms ease;
+}
+
+.bansec {
+  width: 97%;
+  height: auto;
+  margin: auto;
+  padding: 5px;
+  margin-top: 15px;
+}
