@@ -22,9 +22,24 @@ const removeBanner = async (id) => {
   return { id };
 }
 
+const getBannerById = async (id)=>{
+  const bannerDoc = doc(db, 'Banners', id);
+  const docSnap = await getDoc(bannerDoc);
+  if (docSnap.exists()) {
+    return { id: docSnap.id, ...docSnap.data() };
+  } else {
+    throw new Error('Banner no encontrado');
+  }
+}
 
+const updateBanner = async (id, newObject) => {
+  const bannerDoc = doc(db, 'Banners', id);
+  await updateDoc(bannerDoc, newObject);
+  const updatedDoc = await getDoc(bannerDoc);
+  return { id: updatedDoc.id, ...updatedDoc.data() };
+};
 
-const bannersServices = { getAllBanners,createBanner, removeBanner };
+const bannersServices = { getAllBanners,createBanner, removeBanner, getBannerById, updateBanner };
 
 //* Marcas
 const brandsCollection = collection(db, 'Brands');

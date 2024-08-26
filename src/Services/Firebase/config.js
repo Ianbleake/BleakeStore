@@ -6,7 +6,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyA3iSD6wCagLNYa2mTNhAGcopMNWiN3TZ8",
   authDomain: "bleakestore.firebaseapp.com",
   projectId: "bleakestore",
-  storageBucket: "bleakestore.appspot.com",  // Este es el bucket de almacenamiento
+  storageBucket: "bleakestore.appspot.com", 
   messagingSenderId: "403858457641",
   appId: "1:403858457641:web:a722383ed85003c3438838"
 };

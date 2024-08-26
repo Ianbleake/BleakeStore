@@ -57,7 +57,7 @@ const Banners = () => {
   return (
     <div className='contentpage'>
       {createForm ? <CrateBanner handler={setBanners} state={banners} showHandler={showCreate} /> : ''}
-      {editForm.show ? <EditBanner banner={editForm.id} handler={setBanners} state={banners} showhandler={editForm.show} /> : ''}
+      {editForm.show ? <EditBanner banner={editForm.id} handler={setBanners} state={banners} showhandler={showEdit} /> : ''}
       <div className='bansec' >
       {
         banners.map((banner,index) => {
