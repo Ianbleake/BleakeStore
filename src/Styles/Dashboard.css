@@ -394,3 +394,20 @@
 .inpt.text {
   height: 100px;
 }
+
+.adminpage{
+  animation: show 500ms ease;
+}
+
+.buttons {
+  display: grid;
+  justify-items: stretch;
+  gap: 10px;
+}
+
+.btn.edit,.btn.delete {
+  height: 40px;
+  font-size: 35px;
+  width: 50%;
+}
+

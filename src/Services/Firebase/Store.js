@@ -16,7 +16,15 @@ const createBanner = async (newObject) => {
   return { id: docRef.id, ...docSnap.data()};
 }
 
-const bannersServices = { getAllBanners,createBanner };
+const removeBanner = async (id) => {
+  const bannerDoc = doc(db,'Banners',id);
+  await deleteDoc(bannerDoc);
+  return { id };
+}
+
+
+
+const bannersServices = { getAllBanners,createBanner, removeBanner };
 
 //* Marcas
 const brandsCollection = collection(db, 'Brands');
