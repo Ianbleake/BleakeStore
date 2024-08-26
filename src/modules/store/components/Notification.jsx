@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNotificacion } from '../contexts/NotificationContext';
+import { useNotificacion } from '../../../contexts/NotificationContext';
 import Alert from '../../../assets/Alert.svg';
 import Success from '../../../assets/Success.svg';
 import Warning from '../../../assets/Warning.svg';

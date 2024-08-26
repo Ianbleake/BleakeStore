@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import usersService from '../../../Services/Firebase/Users'
-import { useNotificacion } from '../../store/contexts/NotificationContext';
+import { useNotificacion } from '../../../contexts/NotificationContext';
 
 const CrateUser = ({handler,state,showHandler}) => {
 

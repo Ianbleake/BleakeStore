@@ -6,7 +6,7 @@ import Loader from '../components/Loader';
 import CrateBanner from '../components/CrateBanner';
 import { CiTrash } from "react-icons/ci";
 import { CiEdit } from "react-icons/ci";
-import { useNotificacion } from '../../store/contexts/NotificationContext';
+import { useNotificacion } from '../../../contexts/NotificationContext';
 import EditBanner from '../components/EditBanner';
 
 const Banners = () => {

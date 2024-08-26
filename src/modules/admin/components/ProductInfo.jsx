@@ -4,7 +4,7 @@ import Loader from './Loader';
 import Buton from './Buton';
 import { storage } from '../../../Services/Firebase/config';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useNotificacion } from '../../store/contexts/NotificationContext';
+import { useNotificacion } from '../../../contexts/NotificationContext';
 
 
 

@@ -9,7 +9,7 @@ import Cart from '../modules/store/views/Cart';
 import PopMenu from '../modules/store/views/PopMenu';
 import LoginPopUp from '../modules/store/views/LoginPopUp';
 import Dashboard from '../modules/admin/Dashboard';
-import { NotificacionProvider } from '../modules/store/contexts/NotificationContext'; 
+import { NotificacionProvider } from '../contexts/NotificationContext'; 
 import Notification from '../modules/store/components/Notification';
 
 const App = () => {

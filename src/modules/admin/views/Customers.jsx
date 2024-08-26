@@ -3,7 +3,7 @@ import usersService from '../../../Services/Firebase/Users';
 import Buton from '../components/Buton';
 import CrateUser from '../components/CrateUser';
 import UserInfo from '../components/UserInfo';
-import { useNotificacion } from '../../store/contexts/NotificationContext';
+import { useNotificacion } from '../../../contexts/NotificationContext';
 
 const Customers = () => {
   const { setNotificacion } = useNotificacion();

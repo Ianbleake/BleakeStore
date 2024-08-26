@@ -4,7 +4,7 @@ import stockService from '../../../Services/Firebase/Stock'
 import Buton from '../components/Buton';
 import { CreateProduct } from '../components/CreateProduct';
 import Loader from '../components/Loader';
-import { useNotificacion } from '../../store/contexts/NotificationContext';
+import { useNotificacion } from '../../../contexts/NotificationContext';
 import ProductInfo from '../components/ProductInfo';
 
 const Stock = () => {

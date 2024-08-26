@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import userService from '../../../Services/Firebase/Users';
 import Loader from './Loader';
 import Buton from './Buton';
-import { useNotificacion } from '../../store/contexts/NotificationContext';
+import { useNotificacion } from '../../../contexts/NotificationContext';
 
 const UserInfo = ({ user, showhandler,handler, state }) => {
 

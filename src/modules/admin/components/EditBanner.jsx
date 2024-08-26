@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { bannersServices } from '../../../Services/Firebase/Store';
 import Loader from './Loader';
-import { useNotificacion } from '../../store/contexts/NotificationContext';
+import { useNotificacion } from '../../../contexts/NotificationContext';
 import { storage } from '../../../Services/Firebase/config';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
