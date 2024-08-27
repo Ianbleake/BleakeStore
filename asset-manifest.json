@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/BleakeStore/static/css/main.d08802b8.css",
-    "main.js": "/BleakeStore/static/js/main.7baabb2f.js",
+    "main.css": "/BleakeStore/static/css/main.c9fae726.css",
+    "main.js": "/BleakeStore/static/js/main.5ca5444d.js",
+    "static/media/404.svg": "/BleakeStore/static/media/404.96e2d745b84407a8e084558ee2d34670.svg",
     "static/media/Success.svg": "/BleakeStore/static/media/Success.146029e8df517ed2091689b3b7b29c61.svg",
     "index.html": "/BleakeStore/index.html",
     "static/media/Alert.svg": "/BleakeStore/static/media/Alert.d839329b4726fca74ccd4e783442b77e.svg",
     "static/media/Warning.svg": "/BleakeStore/static/media/Warning.6e93b38d3177a34cdb5fc47f204f7524.svg",
-    "main.d08802b8.css.map": "/BleakeStore/static/css/main.d08802b8.css.map",
-    "main.7baabb2f.js.map": "/BleakeStore/static/js/main.7baabb2f.js.map"
+    "main.c9fae726.css.map": "/BleakeStore/static/css/main.c9fae726.css.map",
+    "main.5ca5444d.js.map": "/BleakeStore/static/js/main.5ca5444d.js.map"
   },
   "entrypoints": [
-    "static/css/main.d08802b8.css",
-    "static/js/main.7baabb2f.js"
+    "static/css/main.c9fae726.css",
+    "static/js/main.5ca5444d.js"
   ]
 }
