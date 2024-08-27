@@ -4,8 +4,7 @@ import { useNotificacion } from '../../../contexts/NotificationContext';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-
-const LoginPopUp = ({showhandler}) => {
+export const Login = () => {
 
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -61,7 +60,6 @@ const LoginPopUp = ({showhandler}) => {
             setTimeout(() => {
               setNotificacion((prev) => ({ ...prev, show: false }));
             }, 5000);
-            showhandler();
             const userData = { username: response.username, token: response.id, role: response.type };
             login(userData);
             navigate('/userpage');
@@ -123,36 +121,22 @@ const LoginPopUp = ({showhandler}) => {
   }
 
   return (
-  <div className="wrapper">
-    <div className="card-switch">
-        <label className="switch">
-          <input type="checkbox" className="toggle" />
-          <span className="slider"></span>
-          <span className="card-side"></span>
-          <div className="flip-card__inner">
-              <div className="flip-card__front">
-                  <div className="title">Log in</div>
-                  <form className="flip-card__form" onSubmit={handleLog} >
-                    <input className="flip-card__input" value={logmail} onChange={handleChange} name="logmail" placeholder="Email" type="email" required />
-                    <input className="flip-card__input" value={logpass} onChange={handleChange} name="logpass" placeholder="Password" type="password" required />
-                    <button className="flip-card__btn">Let`s go!</button>
-                  </form>
-              </div>
-              <div className="flip-card__back">
-                  <div className="title">Sign up</div>
-                  <form className="flip-card__form" onSubmit={handleSubmint}>
-                    <input className="flip-card__input" value={username} onChange={handleChange} name='username'  placeholder="Username" type="text" required />
-                    <input className="flip-card__input" value={name} onChange={handleChange} name='name'  placeholder="Name" type="text" required />
-                    <input className="flip-card__input" value={email} onChange={handleChange} name="email" placeholder="Email" type="email" required />
-                    <input className="flip-card__input" value={pass} onChange={handleChange} name="password" placeholder="Password" type="password" required />
-                    <button className="flip-card__btn">Confirm!</button>
-                  </form>
-              </div>
-          </div>
-        </label>
-    </div>   
-  </div>
+    <section className='login' >
+      <form className='form log' onSubmit={handleLog}>
+        <h2 className='title'>Iniciar Sesion</h2>
+        <input className='inpt' value={logmail} onChange={handleChange} name="logmail" placeholder="Email" type="email" required />
+        <input className='inpt' value={logpass} onChange={handleChange} name="logpass" placeholder="Password" type="password" required />
+        <input type="submit" className='btn log' value="Entrar!" />
+      </form>
+
+      <form className='form log' onSubmit={handleSubmint}>
+        <h2 className='title'>Registrarme</h2>
+        <input className='inpt' value={username} onChange={handleChange} name='username'  placeholder="Username" type="text" required />
+        <input className='inpt' value={name} onChange={handleChange} name='name'  placeholder="Name" type="text" required  />
+        <input className='inpt' value={email} onChange={handleChange} name="email" placeholder="Email" type="email" required />
+        <input className='inpt' value={pass} onChange={handleChange} name="password" placeholder="Password" type="password" required />
+        <input type="submit" className=' btn log' value="Registrarme" />
+      </form>
+    </section>
   )
 }
-
-export default LoginPopUp

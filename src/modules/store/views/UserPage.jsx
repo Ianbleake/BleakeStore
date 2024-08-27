@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import userService from '../../../Services/Firebase/Users';
 import { useNotificacion } from '../../../contexts/NotificationContext';
@@ -43,7 +43,7 @@ const UserPage = () => {
   return (
     <div className='page user'>
       <h1 className='title user'>Bienvenido {user?.username}</h1>
-      <section className='userinfo'>
+      <section className='userinfoo'>
         <div className='personalinfo'>
           <h2>Información de usuario</h2>
           <div className='infotitle'>Nombre:<span className='infoo'>{userInfo.name}</span></div>
@@ -59,8 +59,9 @@ const UserPage = () => {
           </table>
         </div>
       </section>
-      <div className='center'>
+      <div className='ctas center'>
         <button className='btn' onClick={handleLogout}>Cerrar sesión</button>
+        { user.role === 'Admin' ? <Link to={'/admin'} ><button className='btn' >Admin</button></Link> : null }
       </div>
       
     </div>

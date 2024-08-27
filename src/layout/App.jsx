@@ -13,10 +13,11 @@ import { NotificacionProvider } from '../contexts/NotificationContext';
 import Notification from '../modules/store/components/Notification';
 import { useAuth } from '../contexts/AuthContext';
 import UserPage from '../modules/store/views/UserPage';
-
+import PrivateRoute from './PrivateRoute';
+import { Login } from '../modules/store/views/Login';
+import Unauthorized from '../modules/store/views/Unauthorized';
 
 const App = () => {
-
   const { login } = useAuth();
   const [showLogin, setLogin] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -36,7 +37,6 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
 
   const loginHandler = () => {
     setLogin(!showLogin);
@@ -50,39 +50,37 @@ const App = () => {
     setCart(!cart);
   };
 
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
   return (
     <NotificacionProvider>
       <div className="App">
-        {location.pathname !== '/admin' && (
-          <Header loginHandler={loginHandler} menuHandler={menuHandler} cartHandler={cartHandler} />
+        {!isAdminRoute && (
+          <>
+            <Header loginHandler={loginHandler} menuHandler={menuHandler} cartHandler={cartHandler} />
+            <div className="AppBody">
+              <Notification /> 
+              {showLogin && <LoginPopUp showhandler={loginHandler} />}
+              {cart && <Cart handler={cartHandler} />}
+              {menu && <PopMenu />}
+            </div>
+          </>
         )}
-        {location.pathname !== '/admin' ? (
-          <div className="AppBody">
-            <Notification /> 
-            {showLogin ? <LoginPopUp showhandler={loginHandler} /> : ''}
-            {cart ? <Cart handler={cartHandler} /> : ''}
-            {menu ? <PopMenu /> : ''}
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/Bleakestore" element={<Home />} />
-              <Route path="/admin" element={<Dashboard />} />
-              <Route path="/Listing" element={<ListingProducts />} />
-              <Route path='/Userpage' element={<UserPage/>} />
-            </Routes>
-          </div>
-        ) : (
-          <div>
-            <Notification /> 
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/admin" element={<Dashboard />} />
-            </Routes>
-          </div>
-        )}
+        <Notification /> 
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Bleakestore" element={<Home />} />
+          <Route path="/Listing" element={<ListingProducts />} />
+          <Route path='/Login' element={<Login />} />
+          <Route path='/Userpage' element={<UserPage />} />
+          <Route path='/Unauthorized' element={<Unauthorized />} />
+          <Route element={<PrivateRoute requiredRole="Admin" />}>
+            <Route path="/admin" element={<Dashboard />} />
+          </Route>
+        </Routes>
       </div>
     </NotificacionProvider>
   );
 };
-
 
 export default App;
