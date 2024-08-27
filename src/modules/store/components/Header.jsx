@@ -15,7 +15,7 @@ const Header = ({loginHandler, menuHandler, cartHandler}) => {
         <button className='menubtn' onClick={menuHandler} ><CiMenuBurger /></button>
         <Link to={"/"} ><h1>BleakeStore</h1></Link>
         <div className='icons'>
-          {user ? <Link><CiUser /></Link> : <button className='iconbutton' onClick={loginHandler} ><CiUser /></button> }     
+          {user ? <Link to={'/userpage'}><CiUser /></Link> : <button className='iconbutton' onClick={loginHandler} ><CiUser /></button> }     
           <button className='iconbutton' onClick={cartHandler} ><CiShoppingCart /></button>
         </div>
       </div>

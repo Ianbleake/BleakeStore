@@ -23,6 +23,10 @@ a {
   color: currentColor;
 }
 
+.center{
+  margin: auto;
+}
+
 .AppBody{
   padding-top: 65px;
 }
@@ -224,6 +228,54 @@ a {
   margin: auto;
   margin-top: 15px;
   overflow: scroll;
+}
+
+a[href="/admin"],a[href="/userpage"] {
+  height: 100%;
+}
+
+a[href="/admin"] > svg,a[href="/userpage"] > svg {
+  height: 100%;
+  width: 80%;
+  cursor: pointer;
+}
+
+.personalinfo {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  border: 2px solid black;
+  box-shadow: 4px 4px black;
+  padding: 20px;
+  justify-content: space-evenly;
+}
+
+.page.user {
+  display: grid;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  gap: 5%;
+}
+
+.shipments{
+ width: 60%;
+}
+.personalinfo {
+  width: 40%;
+}
+
+.btn.editinfo {
+  height: 50px;
+  width: 100%;
+}
+
+.title.user {
+  font-size: 2em;
 }
 
 

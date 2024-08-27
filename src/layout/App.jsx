@@ -11,8 +11,8 @@ import LoginPopUp from '../modules/store/views/LoginPopUp';
 import Dashboard from '../modules/admin/Dashboard';
 import { NotificacionProvider } from '../contexts/NotificationContext'; 
 import Notification from '../modules/store/components/Notification';
-import Login from '../modules/store/views/Login';
 import { useAuth } from '../contexts/AuthContext';
+import UserPage from '../modules/store/views/UserPage';
 
 
 const App = () => {
@@ -37,10 +37,6 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
-  const logoutUser = () => {
-    localStorage.removeItem('user');
-  };
-  
 
   const loginHandler = () => {
     setLogin(!showLogin);
@@ -58,7 +54,7 @@ const App = () => {
     <NotificacionProvider>
       <div className="App">
         {location.pathname !== '/admin' && (
-          <Header loginHandler={loginHandler} menuHandler={menuHandler} cartHandler={cartHandler} logoutUser={logoutUser} />
+          <Header loginHandler={loginHandler} menuHandler={menuHandler} cartHandler={cartHandler} />
         )}
         {location.pathname !== '/admin' ? (
           <div className="AppBody">
@@ -71,7 +67,7 @@ const App = () => {
               <Route path="/Bleakestore" element={<Home />} />
               <Route path="/admin" element={<Dashboard />} />
               <Route path="/Listing" element={<ListingProducts />} />
-              <Route path='/Login' element={<Login />} />
+              <Route path='/Userpage' element={<UserPage/>} />
             </Routes>
           </div>
         ) : (
@@ -80,7 +76,6 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/admin" element={<Dashboard />} />
-              <Route path="/Listing" element={<ListingProducts />} />
             </Routes>
           </div>
         )}

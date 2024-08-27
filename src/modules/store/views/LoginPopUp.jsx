@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import usersService from '../../../Services/Firebase/Users'
 import { useNotificacion } from '../../../contexts/NotificationContext';
 import { useAuth } from '../../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginPopUp = ({showhandler}) => {
 
+  const navigate = useNavigate();
   const { login } = useAuth();
   const { setNotificacion } = useNotificacion();
   const [username,setUsername] = useState('');
@@ -62,6 +64,7 @@ const LoginPopUp = ({showhandler}) => {
             showhandler();
             const userData = { username: response.username, token: response.id, role: response.type };
             login(userData);
+            navigate('/userpage');
           }
           
           setLogmail('');
