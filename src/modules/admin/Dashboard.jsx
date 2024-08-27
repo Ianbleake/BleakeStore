@@ -5,6 +5,7 @@ import Customers from './views/Customers';
 import Stock from './views/Stock';
 import Ships from './views/Ships';
 import Store from './views/Store';
+import { Link } from 'react-router-dom';
 
 
 const Dashboard = () => {
@@ -19,6 +20,13 @@ const Dashboard = () => {
   return (
     <section className='dashboard'>
       <aside className='sidemenu'>
+        <Link to={'/'} >
+          <button className="adminbtn">
+            <div className="button-text">
+              <span>Regresar</span>
+            </div>
+          </button>
+        </Link>
         <Button label={'Usuarios'} handler={pageHandler} value={'user'} />
         <Button label={'Inventario'} handler={pageHandler} value={'stock'} />
         <Button label={'Pedidos'} handler={pageHandler} value={'ship'} />

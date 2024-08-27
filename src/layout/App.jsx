@@ -51,6 +51,9 @@ const App = () => {
   };
 
   const isAdminRoute = location.pathname.startsWith('/admin');
+  const isLoginRoute = location.pathname.startsWith('/Login');
+
+  console.log('Login:',isLoginRoute)
 
   return (
     <NotificacionProvider>
@@ -60,7 +63,7 @@ const App = () => {
             <Header loginHandler={loginHandler} menuHandler={menuHandler} cartHandler={cartHandler} />
             <div className="AppBody">
               <Notification /> 
-              {showLogin && <LoginPopUp showhandler={loginHandler} />}
+              {showLogin && !isLoginRoute && <LoginPopUp showhandler={loginHandler} />}
               {cart && <Cart handler={cartHandler} />}
               {menu && <PopMenu />}
             </div>
