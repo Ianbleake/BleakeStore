@@ -53,8 +53,6 @@ const App = () => {
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isLoginRoute = location.pathname.startsWith('/Login');
 
-  console.log('Login:',isLoginRoute)
-
   return (
     <NotificacionProvider>
       <div className="App">
