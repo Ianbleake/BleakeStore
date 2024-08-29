@@ -355,3 +355,20 @@ a[href="/admin"] > svg,a[href="/userpage"] > svg {
 .failbtn:active{
   transform: translateX(0px);
 }
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  margin-top: 20px;
+  width: 95%;
+}
+
+.filter {
+  height: 30px;
+  min-width: 150px;
+  border: 2px solid black;
+  box-shadow: 6px 4px black;
+}
