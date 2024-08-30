@@ -63,7 +63,6 @@ const UserPage = () => {
 
   }
 
-  //TODO: Actualizar username en localhost 
   const handleSubmit = (event) => {
     event.preventDefault();
     const userObjet = {

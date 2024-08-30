@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ProductCard from '../components/ProductCard';
 import productsServices from '../../../Services/Firebase/Stock';
 import Loader from '../components/Loader';
+import { CartContext } from '../../../contexts/CartContext'; 
 
 const ListingProducts = () => {
+
+  const { cart, setCart } = useContext(CartContext);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -20,6 +23,22 @@ const ListingProducts = () => {
         setCategories(uniqueCategories);
       });
   }, []);
+
+  const addToCart = (id, name, srcimg, price) => {
+    const productObjet = {
+      id: id,
+      title: name,
+      image: srcimg,
+      price: price,
+    };
+    const updateCart = [...cart, productObjet];
+    setCart(updateCart);
+    localStorage.setItem('cart', JSON.stringify(updateCart));
+  };
+  
+  
+  
+  console.log('Carrito: ',cart)
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -46,8 +65,8 @@ const ListingProducts = () => {
             <select 
               name="filter" 
               className='filter' 
-              value={selectedCategory} // Vincula el valor del select al estado
-              onChange={handleCategoryChange} // Manejador de cambio
+              value={selectedCategory} 
+              onChange={handleCategoryChange}
             >
               <option value="">Categoria</option>
               {categories.map(category => (
@@ -72,7 +91,8 @@ const ListingProducts = () => {
                 description={product.description} 
                 srcimg={product.image} 
                 price={product.price} 
-                key={product.id} 
+                key={product.id}
+                handler={()=>addToCart(product.id,product.title,product.image,product.price)}
               />
             ))}
           </section>
