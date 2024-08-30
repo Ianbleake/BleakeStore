@@ -9,18 +9,28 @@ const Cart = ({handler}) => {
   const clearCart = (event)=>{
     event.preventDefault();
     setCart([]);
-    localStorage.clear();
+    localStorage.setItem('cart',[])
   }
 
   const removeItem = (event, index) => {
-    event.preventDefault(); // Evita el envío del formulario
+    event.preventDefault();
     const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-  } 
+  }
+
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newOrder = JSON.stringify(cart);
+    localStorage.setItem('Order', newOrder);
+    setCart([]);
+    localStorage.removeItem('cart');
+  }
 
   return (
-    <form className='sidecart'>
+    <form className='sidecart' onSubmit={handleSubmit} >
       <div className='cartheader' >
         <h2 className='CartTitle'>Tu Carrito</h2>
         <button onClick={handler} className='close' >X</button>
