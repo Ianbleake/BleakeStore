@@ -1,15 +1,25 @@
-import React, { useContext } from 'react'
-import { CartContext } from '../../../contexts/CartContext'; 
 import { CiTrash } from 'react-icons/ci';
+import React, { useContext } from 'react'
+import { CartContext } from '../../../contexts/CartContext';
+import { useNotificacion } from '../../../contexts/NotificationContext';
 
 const Cart = ({handler}) => {
 
+  const { setNotificacion } = useNotificacion();
   const { cart, setCart } = useContext(CartContext);
 
   const clearCart = (event)=>{
     event.preventDefault();
     setCart([]);
     localStorage.setItem('cart',[])
+    setNotificacion({
+      role: 'success', 
+      message: `Carrito vaciado`,
+      show: true,
+    });
+    setTimeout(() => {
+      setNotificacion((prev) => ({ ...prev, show: false }));
+    }, 3000);
   }
 
   const removeItem = (event, index) => {
@@ -17,9 +27,15 @@ const Cart = ({handler}) => {
     const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    
+    setNotificacion({
+      role: 'error', 
+      message: `Producto eliminado`,
+      show: true,
+    });
+    setTimeout(()=>{setNotificacion((prev) => ({ ...prev, show: false }));},3000)
+
   }
-
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
