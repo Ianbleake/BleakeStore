@@ -1,80 +1,95 @@
 import { CiTrash } from 'react-icons/ci';
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';  // Importa useNavigate
 import { CartContext } from '../../../contexts/CartContext';
 import { useNotificacion } from '../../../contexts/NotificationContext';
 
-const Cart = ({handler}) => {
-
+const Cart = ({ handler }) => {
   const { setNotificacion } = useNotificacion();
   const { cart, setCart } = useContext(CartContext);
+  const navigate = useNavigate();  // Inicializa useNavigate
 
-  const clearCart = (event)=>{
+  const clearCart = (event) => {
     event.preventDefault();
     setCart([]);
-    localStorage.setItem('cart',[])
+    localStorage.setItem('cart', []);
     setNotificacion({
-      role: 'success', 
+      role: 'success',
       message: `Carrito vaciado`,
       show: true,
     });
     setTimeout(() => {
       setNotificacion((prev) => ({ ...prev, show: false }));
     }, 3000);
-  }
+  };
 
   const removeItem = (event, index) => {
     event.preventDefault();
     const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-    
+
     setNotificacion({
-      role: 'error', 
+      role: 'error',
       message: `Producto eliminado`,
       show: true,
     });
-    setTimeout(()=>{setNotificacion((prev) => ({ ...prev, show: false }));},3000)
-
-  }
+    setTimeout(() => {
+      setNotificacion((prev) => ({ ...prev, show: false }));
+    }, 3000);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+    if (cart.length === 0) {
+      setNotificacion({
+        role: 'error',
+        message: `El carrito está vacío`,
+        show: true,
+      });
+      setTimeout(() => {
+        setNotificacion((prev) => ({ ...prev, show: false }));
+      }, 3000);
+      return;
+    }
+
     const newOrder = JSON.stringify(cart);
     localStorage.setItem('Order', newOrder);
     setCart([]);
     localStorage.removeItem('cart');
-  }
+    
+    navigate('/checkout');  // Redirige a la ruta /checkout
+  };
 
   return (
-    <form className='sidecart' onSubmit={handleSubmit} >
-      <div className='cartheader' >
+    <form className='sidecart' onSubmit={handleSubmit}>
+      <div className='cartheader'>
         <h2 className='CartTitle'>Tu Carrito</h2>
-        <button onClick={handler} className='close' >X</button>
+        <button onClick={handler} className='close'>X</button>
       </div>
-      <div className='cartitems' >
-        {
-          cart.map((item, index) => {
-              return(
-                <div key={index} className='cartitem' >
-                  <img className='itemimage' src={item.image} alt="" />
-                  <div className='iteminfo' >
-                    <h2 className='itemtitle' >{item.title}</h2>
-                    <h2 className='itemprice' >${item.price}</h2>
-                  </div>
-                  <button className='delbtn' onClick={(event) => removeItem(event, index)} >
-                    <CiTrash/>
-                  </button>
-                </div>
-              )
-          })
-        }
+      <div className='cartitems'>
+        {cart.map((item, index) => {
+          return (
+            <div key={index} className='cartitem'>
+              <img className='itemimage' src={item.image} alt="" />
+              <div className='iteminfo'>
+                <h2 className='itemtitle'>{item.title}</h2>
+                <h2 className='itemprice'>${item.price}</h2>
+              </div>
+              <button className='delbtn' onClick={(event) => removeItem(event, index)}>
+                <CiTrash />
+              </button>
+            </div>
+          );
+        })}
       </div>
-      <div className='cartbtns' >
-        <button className='subtn cartbtn' onClick={clearCart} >Limpiar</button>
+      <div className='cartbtns'>
+        <button className='subtn cartbtn' onClick={clearCart}>Limpiar</button>
         <input className='subtn cartbtn' type="submit" value="Comprar" />
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;
