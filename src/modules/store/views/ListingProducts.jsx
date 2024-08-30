@@ -92,7 +92,7 @@ const ListingProducts = () => {
                 srcimg={product.image} 
                 price={product.price} 
                 key={product.id}
-                handler={()=>addToCart(product.id,product.title,product.image,product.price)}
+                addToCart={()=>addToCart(product.id,product.title,product.image,product.price)}
               />
             ))}
           </section>

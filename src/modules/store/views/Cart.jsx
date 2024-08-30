@@ -6,6 +6,12 @@ const Cart = ({handler}) => {
 
   const { cart, setCart } = useContext(CartContext);
 
+  const clearCart = (event)=>{
+    event.preventDefault();
+    setCart([]);
+    localStorage.clear();
+  }
+
   return (
     <form className='sidecart'>
       <div className='cartheader' >
@@ -31,8 +37,8 @@ const Cart = ({handler}) => {
         }
       </div>
       <div className='cartbtns' >
-        <button className='subtn cart' >Limpiar carrito</button>
-        <input className='subtn cart' type="submit" value="Comprar" />
+        <button className=' subtn cartbtn' onClick={clearCart} >Limpiar</button>
+        <input className='subtn cartbtn' type="submit" value="Comprar" />
       </div>
     </form>
   )

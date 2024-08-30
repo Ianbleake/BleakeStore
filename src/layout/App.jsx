@@ -1,6 +1,6 @@
 import '../Styles/App.css';
 import '../Styles/Components.css';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import ListingProducts from '../modules/store/views/ListingProducts';
 import Header from '../modules/store/components/Header';
@@ -16,12 +16,14 @@ import UserPage from '../modules/store/views/UserPage';
 import PrivateRoute from './PrivateRoute';
 import { Login } from '../modules/store/views/Login';
 import Unauthorized from '../modules/store/views/Unauthorized';
+import { CartContext } from '../contexts/CartContext'; 
 
 const App = () => {
+  const {showCart, setShowCart } = useContext(CartContext)
   const { login } = useAuth();
   const [showLogin, setLogin] = useState(false);
   const [menu, setMenu] = useState(false);
-  const [cart, setCart] = useState(false);
+  
   const location = useLocation();
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const App = () => {
   };
 
   const cartHandler = () => {
-    setCart(!cart);
+    setShowCart(!showCart)
   };
 
   const isAdminRoute = location.pathname.startsWith('/admin');
@@ -62,7 +64,7 @@ const App = () => {
             <div className="AppBody">
               <Notification /> 
               {showLogin && !isLoginRoute && <LoginPopUp showhandler={loginHandler} />}
-              {cart && <Cart handler={cartHandler} />}
+              {showCart && <Cart handler={cartHandler} />}
               {menu && <PopMenu />}
             </div>
           </>

@@ -429,11 +429,6 @@ a[href="/admin"] > svg,a[href="/userpage"] > svg {
   cursor: pointer;
 }
 
-
-
-
-
-
 .cartbtns {
   border-top: 2px solid black;
   display: flex;
@@ -442,6 +437,11 @@ a[href="/admin"] > svg,a[href="/userpage"] > svg {
   align-items: center;
   height: 9%;
   width: 100%;
+}
+
+.subtn.cartbtn {
+  margin: auto;
+  border-radius: 5px;
 }
 
 

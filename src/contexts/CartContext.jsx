@@ -4,6 +4,7 @@ const CartContext = React.createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
     
@@ -17,7 +18,7 @@ const CartProvider = ({ children }) => {
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, setCart }}>
+    <CartContext.Provider value={{ cart, setCart, showCart, setShowCart }}>
       {children} 
     </CartContext.Provider>
   );
