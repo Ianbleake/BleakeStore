@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { CiShoppingCart } from 'react-icons/ci';
 import { CartContext } from '../../../contexts/CartContext';
 
