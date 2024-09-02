@@ -3,10 +3,12 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../../contexts/CartContext';
 import { useNotificacion } from '../../../contexts/NotificationContext';
+import { useAuth } from '../../../contexts/AuthContext'; // Importa el hook useAuth
 
 const Cart = ({ handler }) => {
   const { setNotificacion } = useNotificacion();
   const { cart, setCart } = useContext(CartContext);
+  const { isAuthenticated } = useAuth(); // Usa el hook useAuth para acceder a la autenticación
   const navigate = useNavigate(); 
 
   const clearCart = (event) => {
@@ -51,6 +53,20 @@ const Cart = ({ handler }) => {
       setTimeout(() => {
         setNotificacion((prev) => ({ ...prev, show: false }));
       }, 3000);
+      return;
+    }
+
+    if (!isAuthenticated()) { 
+      setNotificacion({
+        role: 'error',
+        message: `Debes iniciar sesión para realizar la compra`,
+        show: true,
+      });
+      setTimeout(() => {
+        setNotificacion((prev) => ({ ...prev, show: false }));
+      }, 3000);
+      navigate('/Login');
+      handler();
       return;
     }
 
