@@ -1,13 +1,13 @@
 import { CiTrash } from 'react-icons/ci';
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';  // Importa useNavigate
+import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../../contexts/CartContext';
 import { useNotificacion } from '../../../contexts/NotificationContext';
 
 const Cart = ({ handler }) => {
   const { setNotificacion } = useNotificacion();
   const { cart, setCart } = useContext(CartContext);
-  const navigate = useNavigate();  // Inicializa useNavigate
+  const navigate = useNavigate(); 
 
   const clearCart = (event) => {
     event.preventDefault();
@@ -58,8 +58,8 @@ const Cart = ({ handler }) => {
     localStorage.setItem('Order', newOrder);
     setCart([]);
     localStorage.removeItem('cart');
-    
-    navigate('/checkout');  // Redirige a la ruta /checkout
+    handler();
+    navigate('/checkout');
   };
 
   return (
@@ -72,7 +72,7 @@ const Cart = ({ handler }) => {
         {cart.map((item, index) => {
           return (
             <div key={index} className='cartitem'>
-              <img className='itemimage' src={item.image} alt="" />
+              <img className='itemimage' src={item.image} alt={item.title} />
               <div className='iteminfo'>
                 <h2 className='itemtitle'>{item.title}</h2>
                 <h2 className='itemprice'>${item.price}</h2>

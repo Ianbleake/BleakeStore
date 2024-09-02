@@ -388,7 +388,7 @@ a[href="/admin"] > svg,a[href="/userpage"] > svg {
   overflow: scroll;
 }
 
-.cartitem {
+.orderitem,.cartitem {
   height: 90px;
   width: 100%;
   display: flex;
@@ -444,5 +444,50 @@ a[href="/admin"] > svg,a[href="/userpage"] > svg {
   border-radius: 5px;
 }
 
+.checkout {
+  height: 80vh;
+  width: 50%;
+  background: white;
+  margin: auto;
+  margin-top: 50px;
+  border: 2px solid black;
+  box-shadow: 4px 4px black;
+}
 
+.titlecontainer {
+  border-bottom: 3px dashed black;
+  width: 95%;
+  margin: auto;
+}
 
+.subtitle {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.userinfo {
+  border-bottom: 3px dashed black;
+  width: 95%;
+  margin: auto;
+}
+
+.Orderinfo {
+  width: 100%;
+  padding: 10px;
+}
+
+.orderitems {
+  width: 95%;
+  border-bottom: 3px dashed black;
+  margin: auto;
+  height: 60%;
+  overflow: scroll;
+}
+
+.paybtn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 13px;
+}

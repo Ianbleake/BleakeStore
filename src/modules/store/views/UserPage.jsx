@@ -125,7 +125,7 @@ const UserPage = () => {
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]); // Añadido user como dependencia
+  }, [user]);
 
   if (!user || !userInfo) {
     return <Loader />;
