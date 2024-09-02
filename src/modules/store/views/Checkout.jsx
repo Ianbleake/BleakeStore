@@ -1,13 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Loader from '../components/Loader';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../contexts/AuthContext';
 import userService from '../../../Services/Firebase/Users';
+import checkoutServices from '../../../Services/Firebase/checkout';
+import { useNotificacion } from '../../../contexts/NotificationContext';
 
 const Checkout = () => {
 
   const { user } = useAuth();
-  const Order = JSON.parse(localStorage.getItem('Order'));
+  const navigate = useNavigate(); 
   const [info, setInfo] = useState(null);
+  const { setNotificacion } = useNotificacion();
+  const Order = JSON.parse(localStorage.getItem('Order'));
 
   useEffect(() => {
     if (user && user.token) {
@@ -21,9 +26,38 @@ const Checkout = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+  
+  
+
 
   const payment = (event)=>{
     event.preventDefault();
+
+    const now = new Date();
+    const fecha = now.toDateString();
+    const shipingAddress = `${info.address.street} ${info.address.number}, ${info.address.zip} ${info.address.city}`;
+
+
+    const orderObjet = {
+      ownerId: info.id,
+      owner: info.name,
+      shipTo: shipingAddress, 
+      items: Order,
+      date: fecha
+    }
+
+    checkoutServices.create(orderObjet).then(()=>{
+      setNotificacion({
+        role: 'success',
+        message: `Pedido realizado`,
+        show: true,
+      });
+      setTimeout(() => {
+        setNotificacion((prev) => ({ ...prev, show: false }));
+      }, 3000);
+      navigate('/userpage');
+    })  
+
 
   }
 
@@ -50,7 +84,7 @@ const Checkout = () => {
             {
               Order.map((item, index) => {
                 return(
-                  <div className='orderitem' >
+                  <div className='orderitem' key={index} >
                     <img className='itemimage' src={item.image} alt={item.title} />
                     <div className='iteminfo'>
                       <h2 className='itemtitle'>{item.title}</h2>
