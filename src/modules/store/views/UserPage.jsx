@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import userService from '../../../Services/Firebase/Users';
 import { useNotificacion } from '../../../contexts/NotificationContext';
+import checkoutServices from '../../../Services/Firebase/checkout';
 
 const UserPage = () => {
   const { setNotificacion } = useNotificacion();
@@ -19,6 +20,7 @@ const UserPage = () => {
   const [number, setNumber] = useState('');
   const [zip, setZip] = useState('');
   const [city, setCity] = useState('');
+  const [pedidos, setPedidos] = useState(null);
 
   const handleLogout = () => {
     logout();
@@ -119,13 +121,21 @@ const UserPage = () => {
           setNumber(response.address.number);
           setZip(response.address.zip);
           setCity(response.address.city);
+
+          // Obtener los pedidos del usuario
+          return checkoutServices.getByUser(response.id);
+        })
+        .then((pedidosResponse) => {
+          setPedidos(pedidosResponse);
         })
         .catch((error) => {
-          console.error('Error fetching user data:', error);
+          console.error('Error fetching user data or orders:', error);
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
+  console.log('Pedidos:',pedidos)
 
   if (!user || !userInfo) {
     return <Loader />;
@@ -151,8 +161,36 @@ const UserPage = () => {
             </form>
 
             <div className='shipments'>
-              <h2>Pedidos</h2>
-              <table></table>
+              <div className='Table'>
+                <div className='row head'>
+                  <div className='col head'>
+                    ID
+                  </div>
+                  <div className='col head'>
+                    Items
+                  </div>
+                  <div className='col head'>
+                    Direccion
+                  </div>
+                  <div className='col head'>
+                    Fecha
+                  </div>
+                </div>
+                {pedidos && pedidos.length > 0 ? (
+                  pedidos.map((pedido) => (
+                    <div className='row' key={pedido.id}>
+                      <div className='col'>{pedido.id}</div>
+                      <div className='col'>{pedido.items.map(item => item.title).join(', ')}</div>
+                      <div className='col'>{pedido.shipTo}</div>
+                      <div className='col'>{pedido.date}</div>
+                    </div>
+                  ))
+                ) : (
+                  <div className='row'>
+                    <div className='col' colSpan="3">No tienes pedidos</div>
+                  </div>
+                )}
+              </div>
             </div>
           </section>
           <div className='ctas center'>
@@ -172,9 +210,38 @@ const UserPage = () => {
               <div className='infotitle'>Dirección:<span className='infoo'>{street} {number} {zip} {city}</span></div>
               <button className='btn editinfo' onClick={handleShowEdit}>Editar información</button>
             </div>
+
             <div className='shipments'>
-              <h2>Pedidos</h2>
-              <table></table>
+              <div className='Table ord'>
+                <div className='row head ord'>
+                  <div className='col head '>
+                    ID
+                  </div>
+                  <div className='col head'>
+                    Items
+                  </div>
+                  <div className='col head'>
+                    Direccion
+                  </div>
+                  <div className='col head'>
+                    Fecha
+                  </div>
+                </div>
+                {pedidos && pedidos.length > 0 ? (
+                  pedidos.map((pedido) => (
+                    <div className='row' key={pedido.id}>
+                      <div className='col'>{pedido.id}</div>
+                      <div className='col'>{pedido.items.map(item => item.title).join(', ')}</div>
+                      <div className='col'>{pedido.shipTo}</div>
+                      <div className='col'>{pedido.date}</div>
+                    </div>
+                  ))
+                ) : (
+                  <div className='row'>
+                    <div className='col' colSpan="3">No tienes pedidos</div>
+                  </div>
+                )}
+              </div>
             </div>
           </section>
           <div className='ctas center'>
@@ -185,6 +252,6 @@ const UserPage = () => {
       )}
     </>
   );
-}
+};
 
 export default UserPage;

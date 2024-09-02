@@ -150,7 +150,7 @@
   border-right: 4px solid black;
   text-align: center;
   line-height: 50px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .col.click{

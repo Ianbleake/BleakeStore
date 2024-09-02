@@ -491,3 +491,35 @@ a[href="/admin"] > svg,a[href="/userpage"] > svg {
   justify-content: center;
   padding-top: 13px;
 }
+
+.orders {
+  width: 100%;
+  min-height: 20%;
+  border: 2px solid black;
+  box-shadow: 4px 4px black;
+  max-height: 42vh;
+  overflow: scroll;
+}
+
+.orderhead {
+  height: 70px;
+  width: 100%;
+}
+
+.ordercol {
+  border-right: 2px solid black;
+  height: 100%;
+}
+
+.ordercol:last-child {
+  border-right: none;
+}
+
+.Table.ord {
+  margin: 0px;
+  width: 100%;
+  border: 2px solid black;
+  box-shadow: 4px 4px black;
+}
+
+

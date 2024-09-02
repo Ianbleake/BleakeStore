@@ -25,7 +25,7 @@ const remove = async (id) => {
 };
 
 const getByUser = async (userId) => {
-  const q = query(pedidosCollection, where('userId', '==', userId));
+  const q = query(pedidosCollection, where('ownerId', '==', userId));
   const querySnapshot = await getDocs(q);
   const pedidos = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   return pedidos;
