@@ -180,7 +180,7 @@ const UserPage = () => {
                   pedidos.map((pedido) => (
                     <div className='row' key={pedido.id}>
                       <div className='col'>{pedido.id}</div>
-                      <div className='col'>{pedido.items.map(item => item.title).join(', ')}</div>
+                      <div className='col'>{(pedido.items || []).map(item => item.title).join(', ')}</div>
                       <div className='col'>{pedido.shipTo}</div>
                       <div className='col'>{pedido.date}</div>
                     </div>

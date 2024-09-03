@@ -411,3 +411,15 @@
   width: 50%;
 }
 
+.prodsel {
+  height: 200px;
+  width: 65%;
+  border: 2px solid black;
+  overflow: scroll;
+  margin-bottom: 20px;
+}
+
+.prod {
+  font-size: 15px;
+  font-weight: 600;
+}

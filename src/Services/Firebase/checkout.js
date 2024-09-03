@@ -3,6 +3,12 @@ import { collection, getDocs, addDoc, doc, getDoc, deleteDoc, query, where } fro
 
 const pedidosCollection = collection(db, 'Pedidos');
 
+const getAll = async () => {
+  const snapshot = await getDocs(pedidosCollection);
+  const pedidos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  return pedidos;
+};
+
 const create = async (newObject) => {
   const docRef = await addDoc(pedidosCollection, newObject);
   const docSnap = await getDoc(docRef);
@@ -19,9 +25,9 @@ const getById = async (id) => {
 };
 
 const remove = async (id) => {
-  const docRef = doc(db, 'Pedidos', id);
-  await deleteDoc(docRef);
-  return `Pedido con ID ${id} ha sido eliminado.`;
+  const pedidoDoc = doc(db, 'Pedidos', id); 
+  await deleteDoc(pedidoDoc);
+  return { id }; 
 };
 
 const getByUser = async (userId) => {
@@ -31,6 +37,6 @@ const getByUser = async (userId) => {
   return pedidos;
 };
 
-const checkoutServices = { create, getById, remove, getByUser };
+const checkoutServices = { create, getById, remove, getByUser, getAll };
 
 export default checkoutServices;

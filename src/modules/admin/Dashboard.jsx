@@ -6,6 +6,7 @@ import Stock from './views/Stock';
 import Ships from './views/Ships';
 import Store from './views/Store';
 import { Link } from 'react-router-dom';
+import Sales from './views/Sales';
 
 
 const Dashboard = () => {
@@ -38,7 +39,7 @@ const Dashboard = () => {
           showPage === 'stock' ? <Stock/> :
           showPage === 'store' ? <Store/> :
           showPage === 'ship' ? <Ships/> :
-          null
+          <Sales/>
         }
       </main>
 
