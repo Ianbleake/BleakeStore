@@ -10,8 +10,9 @@ const Ships = () => {
 
   const [pedidos,setPedidos] = useState(null);
   const { setNotificacion } = useNotificacion();
-  const [showInfo,setShowInfo] = useState(false);
+  const [showInfo,setShowInfo] = useState({show:false,id:''});
   const [showCreate,setShowCreate] = useState(false);
+  console.log('StateInfo:',showInfo)
 
   useEffect(() => { 
     checkoutServices.getAll()
@@ -35,9 +36,9 @@ const Ships = () => {
       })
   } 
 
-  const handleStates = (state)=>{
+  const handleStates = (state, id)=>{
     if(state === 'info'){
-      setShowInfo(!showInfo);
+      setShowInfo({show:!showInfo.show,id:id});
     }else if(state === 'create'){
       setShowCreate(!showCreate)
     }
@@ -50,7 +51,7 @@ const Ships = () => {
         !pedidos ? <Loader/> : 
           <div className='adminpage' >
             { showCreate ? <CreateShipment handler={setPedidos} state={pedidos} showHandler={()=>handleStates('create')} /> : '' }
-            { showInfo ? <ShipmentInfo handler={setPedidos} state={pedidos} showHandler={()=>handleStates('info')} /> : '' }
+            { showInfo.show ? <ShipmentInfo id={showInfo.id} showhandler={()=>handleStates('info')} /> : '' }
             <div className='Table'>
               <div className='row head' >
                 <div className='col head'>
@@ -77,7 +78,7 @@ const Ships = () => {
                 pedidos.map((pedido,index)=> {
                   return(
                     <div className='row ' key={index} >
-                      <div className='col click' onClick={()=>handleStates('info')}>{pedido.id}</div>
+                      <div className='col click' onClick={()=>handleStates('info',pedido.id)}>{pedido.id}</div>
                       <div className='col'>{pedido.owner}</div>
                       {/* <div className='col'>{pedido.items.map((item) => {return item.title }).join(', ')}</div> */}
                       <div className='col'>{pedido.items.length}</div>

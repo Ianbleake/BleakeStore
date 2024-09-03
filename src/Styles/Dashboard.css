@@ -423,3 +423,25 @@
   font-size: 15px;
   font-weight: 600;
 }
+
+.window.ship {
+  max-height: 90%;
+  overflow: hidden;
+  height: auto;
+}
+
+.shipitems {
+  border: 2px solid black;
+  max-height: 70%;
+  height: auto;
+  overflow: scroll;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ship {
+  height: 95%;
+}
