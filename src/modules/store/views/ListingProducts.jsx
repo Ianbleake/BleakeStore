@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import ProductCard from '../components/ProductCard';
 import productsServices from '../../../Services/Firebase/Stock';
 import Loader from '../components/Loader';
 import { CartContext } from '../../../contexts/CartContext'; 
+import ProductPage from './ProductPage';
 
 const ListingProducts = () => {
 
@@ -12,6 +13,7 @@ const ListingProducts = () => {
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [page,setPage] = useState({show:false, id:''});
 
   useEffect(() => {
     productsServices
@@ -36,9 +38,10 @@ const ListingProducts = () => {
     localStorage.setItem('cart', JSON.stringify(updateCart));
   };
   
-  
-  
-  console.log('Carrito: ',cart)
+  const handlePage = (productId)=>{
+    const updateState = {show:!page.show,id: productId }
+    setPage(updateState);
+  }
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -60,7 +63,7 @@ const ListingProducts = () => {
       {loading ? (
         <Loader />
       ) : (
-        <>
+        <Fragment>
           <div className='filters' >
             <select 
               name="filter" 
@@ -84,6 +87,7 @@ const ListingProducts = () => {
             </div>
           </div>
           <section className='Listing'>
+            { page.show ? <ProductPage id={page.id} showhandler={handlePage} addToCart={addToCart} /> : '' }
             {filteredProducts.map(product => (
               <ProductCard 
                 id={product.id} 
@@ -93,10 +97,11 @@ const ListingProducts = () => {
                 price={product.price} 
                 key={product.id}
                 addToCart={()=>addToCart(product.id,product.title,product.image,product.price)}
+                pagehandler={handlePage}
               />
             ))}
           </section>
-        </>
+        </Fragment>
       )}
     </>
   );

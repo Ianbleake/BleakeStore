@@ -522,4 +522,60 @@ a[href="/admin"] > svg,a[href="/userpage"] > svg {
   box-shadow: 4px 4px black;
 }
 
+.window.pp {
+  display: flex;
+  flex-direction: row;
+  height: 90%;
+  width: 90%;
+}
+
+.infocont,.imagecont {
+  height: 100%;
+  width: 50%;
+}
+
+.prodimg {
+  height: 60%;
+  width: 80%;
+}
+
+.imagecont {
+  padding-left: 50px;
+  padding-top: 100px;
+}
+
+.infocont {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5%;
+}
+
+.price {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.description {
+  text-align: justify;
+  padding: 15px;
+  line-height: 20px;
+}
+
+.refinfo {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.titlepp {
+  margin: 20px 0 20px 0;
+  font-size: 40px;
+  font-weight: 900;
+  text-align: center;
+}
 

@@ -432,7 +432,7 @@
 
 .shipitems {
   border: 2px solid black;
-  max-height: 70%;
+  max-height: 90%;
   height: auto;
   overflow: scroll;
   padding: 25px;
@@ -443,5 +443,5 @@
 }
 
 .ship {
-  height: 95%;
+  height: 500px;
 }
