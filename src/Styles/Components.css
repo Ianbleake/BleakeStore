@@ -630,6 +630,7 @@
 
 .loader.shop {
   left: 38%;
+  background-color: #fff;
 }
 
 /**Loader*/
@@ -695,4 +696,15 @@
 .CartBtn:active {
   transform: scale(0.95);
   transition-duration: .5s;
+}
+
+.window.shipage {
+  top: 13vh;
+  width: 90%;
+  height: auto;
+  max-height: 83vh;
+}
+
+.cartitem.con {
+  border-bottom: 1px solid black;
 }

@@ -5,6 +5,7 @@ import Loader from '../components/Loader';
 import userService from '../../../Services/Firebase/Users';
 import { useNotificacion } from '../../../contexts/NotificationContext';
 import checkoutServices from '../../../Services/Firebase/checkout';
+import ShipInfo from '../components/ShipInfo';
 
 const UserPage = () => {
 
@@ -22,6 +23,7 @@ const UserPage = () => {
   const [zip, setZip] = useState('');
   const [city, setCity] = useState('');
   const [pedidos, setPedidos] = useState(null);
+  const [showInfo,setShowInfo] = useState({show:false,id:''});
 
   const handleLogout = () => {
     logout();
@@ -109,6 +111,11 @@ const UserPage = () => {
       });
   };
 
+  const handleShowInfo = (id)=>{
+    const showObjet = {show:!showInfo.show, id: id }
+    setShowInfo(showObjet);
+  }
+
   useEffect(() => {
     if (user && user.token) {
       userService.getById(user.token)
@@ -140,6 +147,8 @@ const UserPage = () => {
     return <Loader />;
   }
 
+  console.log(showInfo)
+
   return (
     <>
       {showEdit ? (
@@ -160,16 +169,13 @@ const UserPage = () => {
             </form>
 
             <div className='shipments'>
-              <div className='Table'>
-                <div className='row head'>
-                  <div className='col head'>
+              <div className='Table ord'>
+                <div className='row head ord'>
+                  <div className='col head '>
                     ID
                   </div>
                   <div className='col head'>
                     Items
-                  </div>
-                  <div className='col head'>
-                    Direccion
                   </div>
                   <div className='col head'>
                     Fecha
@@ -178,9 +184,8 @@ const UserPage = () => {
                 {pedidos && pedidos.length > 0 ? (
                   pedidos.map((pedido) => (
                     <div className='row' key={pedido.id}>
-                      <div className='col'>{pedido.id}</div>
-                      <div className='col'>{(pedido.items || []).map(item => item.title).join(', ')}</div>
-                      <div className='col'>{pedido.shipTo}</div>
+                      <div className='col click'>{pedido.id}</div>
+                      <div className='col'>{pedido.items.length}</div>
                       <div className='col'>{pedido.date}</div>
                     </div>
                   ))
@@ -199,6 +204,7 @@ const UserPage = () => {
         </div>
       ) : (
         <div className='page user'>
+          {showInfo.show ? <ShipInfo id={showInfo.id} showhandler={handleShowInfo} /> : ''}
           <h1 className='title user'>Bienvenido {username}</h1>
           <section className='userinfoo'>
             <div className='personalinfo'>
@@ -226,7 +232,7 @@ const UserPage = () => {
                 {pedidos && pedidos.length > 0 ? (
                   pedidos.map((pedido) => (
                     <div className='row' key={pedido.id}>
-                      <div className='col click'>{pedido.id}</div>
+                      <div className='col click' onClick={()=>handleShowInfo(pedido.id)} >{pedido.id}</div>
                       <div className='col'>{pedido.items.length}</div>
                       <div className='col'>{pedido.date}</div>
                     </div>
