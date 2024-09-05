@@ -147,8 +147,8 @@ const UserPage = () => {
         <div className='page user'>
           <h1 className='title user'>Bienvenido {user?.username}</h1>
           <section className='userinfoo'>
-            <form className='personalinfo' onSubmit={handleSubmit}>
-              <h2>Información de usuario</h2>
+            <form className='personalinfo edit' onSubmit={handleSubmit}>
+              <h2 className='title' >Información de usuario</h2>
               <input className='inpt' type="text" onChange={handleChange} name='username' value={username} placeholder={userInfo.username} />
               <input className='inpt' type="text" onChange={handleChange} name='name' value={name} placeholder={userInfo.name} />
               <input className='inpt' type="text" onChange={handleChange} name='email' value={email} placeholder={userInfo.email} />

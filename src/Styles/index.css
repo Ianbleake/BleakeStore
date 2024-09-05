@@ -1,0 +1,149 @@
+@media  screen and (max-width: 474px) {
+  .menu {
+    width: 95%;
+}
+
+.Bancont {
+    width: 90%;
+    flex-direction: column;
+}
+
+.bancol.text {
+    padding: 0px;
+    padding-top: 20px;
+    padding-left: 17px;
+}
+
+.text {text-align: justify;width: 95%;}
+
+.bancol {
+    width: 100%;
+    height: 50%;
+    padding: 20px;
+}
+
+.bannerimg {
+    height: 70%;
+    width: 100%;
+    margin-top: 15%;
+}
+
+
+.wrapper {
+left: 45%;
+top: 41%;
+}
+
+.sidecart {width: 90%;}
+
+
+.filters {
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.login {
+    flex-direction: column;
+    gap: 5vh;
+    align-items: center;
+}
+
+.spce {
+    padding-bottom: 30px;
+}
+
+.checkout {
+    height: 90vh;
+    width: 90%;
+    margin-top: 40px;
+}
+
+.page {
+    height: 85vh;
+}
+
+.page.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userinfoo {
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+    width: 100%;
+}
+
+.personalinfo {
+    width: 100%;
+}
+
+.shipments {
+    width: 100%;
+}
+
+.ctas.center {
+    flex-direction: column;
+}
+
+.window.notaccess {
+    left: 1vh;
+    width: 85%;
+    height: auto;
+}
+
+.failtitle {
+    text-align: center;
+}
+
+.failbtn {
+    margin-bottom: 15px;
+}
+
+.personalinfo.edit {
+    display: flex;
+    align-items: center;
+}
+
+.inpt {
+    width: 90%;
+}
+
+.personalinfo.edit {
+    display: flex;
+    align-items: center;
+}
+
+.window.pp {
+    flex-direction: column;
+}
+
+.infocont, .imagecont {
+    height: 50%;
+    width: 100%;
+}
+
+.imagecont {
+    padding: 0;
+}
+
+.prodimg {
+    height: 80%;
+    width: 90%;
+}
+
+.titlepp {
+    margin: 0;
+}
+
+.CartBtn {
+    margin-top: 15px;
+    height: 50px;
+}
+
+.loader.shop {
+    left: 19%;
+}
+
+}

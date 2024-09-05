@@ -1,5 +1,3 @@
-import '../Styles/App.css';
-import '../Styles/Components.css';
 import React, { useContext, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import ListingProducts from '../modules/store/views/ListingProducts';

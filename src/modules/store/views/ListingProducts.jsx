@@ -64,7 +64,7 @@ const ListingProducts = () => {
         <Loader />
       ) : (
         <Fragment>
-          <div className='filters' >
+          <div className='filters spce' >
             <select 
               name="filter" 
               className='filter' 
