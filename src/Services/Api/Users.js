@@ -5,7 +5,6 @@ const getAll = () => {
 };
 
 const Create = (userObjet)=> {
-  console.log('User:',userObjet)
   return fetch('https://fakestoreapi.com/users',{
     method:"POST",
     body:JSON.stringify(userObjet)

@@ -34,7 +34,6 @@ const Banners = () => {
         })
   }, []);
 
-  console.log(editForm)
 
   const handleDelete = (id)=>{
     bannersServices.removeBanner(id).then(()=>{

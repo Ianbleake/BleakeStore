@@ -7,6 +7,7 @@ import { useNotificacion } from '../../../contexts/NotificationContext';
 import checkoutServices from '../../../Services/Firebase/checkout';
 
 const UserPage = () => {
+
   const { setNotificacion } = useNotificacion();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -135,8 +136,6 @@ const UserPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  console.log('Pedidos:',pedidos)
-
   if (!user || !userInfo) {
     return <Loader />;
   }
@@ -221,18 +220,14 @@ const UserPage = () => {
                     Items
                   </div>
                   <div className='col head'>
-                    Direccion
-                  </div>
-                  <div className='col head'>
                     Fecha
                   </div>
                 </div>
                 {pedidos && pedidos.length > 0 ? (
                   pedidos.map((pedido) => (
                     <div className='row' key={pedido.id}>
-                      <div className='col'>{pedido.id}</div>
-                      <div className='col'>{pedido.items.map(item => item.title).join(', ')}</div>
-                      <div className='col'>{pedido.shipTo}</div>
+                      <div className='col click'>{pedido.id}</div>
+                      <div className='col'>{pedido.items.length}</div>
                       <div className='col'>{pedido.date}</div>
                     </div>
                   ))

@@ -136,7 +136,6 @@ const ProductInfo = ({ product, showHandler, handler, state }) => {
   useEffect(() => {
     if (product) {
       productService.getById(product).then((respond) => {
-        console.log('Producto:', respond);
         setInfo(respond);
         setTitle(respond.title);
         setCategory(respond.category);

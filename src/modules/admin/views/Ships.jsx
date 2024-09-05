@@ -12,7 +12,6 @@ const Ships = () => {
   const { setNotificacion } = useNotificacion();
   const [showInfo,setShowInfo] = useState({show:false,id:''});
   const [showCreate,setShowCreate] = useState(false);
-  console.log('StateInfo:',showInfo)
 
   useEffect(() => { 
     checkoutServices.getAll()

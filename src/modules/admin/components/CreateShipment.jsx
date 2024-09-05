@@ -46,7 +46,6 @@ const CreateShipment = ({ handler, state, showHandler }) => {
   }
   
 
-  console.log('Items:',items);
 
   const handleSubmit = (event) => {
     event.preventDefault();

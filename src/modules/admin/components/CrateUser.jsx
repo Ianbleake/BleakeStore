@@ -41,7 +41,6 @@ const CrateUser = ({handler,state,showHandler}) => {
       setPhoneData(value);
     }else if(name === 'type'){
       setTypeData(value);
-      console.log('Type',value);
     }
     
   };

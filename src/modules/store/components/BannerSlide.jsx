@@ -13,7 +13,6 @@ const BannerSlide = () => {
       try {
         const response = await bannersServices.getAllBanners();
         setBanners(response);
-        console.log('Response:', response);
       } catch (error) {
         console.error('Error fetching banners:', error);
       }
@@ -26,7 +25,6 @@ const BannerSlide = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  console.log("Banners:", banners);
 
   const bannersCount = banners ? banners.length : 0;
   const max = bannersCount - 1;
