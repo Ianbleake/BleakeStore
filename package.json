@@ -1,6 +1,5 @@
 {
   "name": "bleakestore",
-  "homepage": "https://ianbleake.github.io/BleakeStore/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
