@@ -68,7 +68,7 @@ const App = () => {
           <Route path='/checkout' element={<Checkout/>} />
         </Routes>
       </div>
-    </NotificacionProvider>
+    </NotificacionProvider>  
   );
 };
 
